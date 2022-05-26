@@ -1,46 +1,41 @@
-export default class Exercise1{
-    question = ''
-    answer = ''
-    options = ''
+export default class Exercise{
+    #question = ''
+    #answer = ''
+    #options = ''
+    #id = 0
+    #title = ''
+    #lessonId = 0
 
-    constructor(question, answer, options){
-        this.question = question
-        this.answer = answer
-        this.options = options
+    constructor(question, answer, options, id, title, lessonId) {
+        this.#question = question
+        this.#answer = answer
+        this.#options = options
+        this.#id = id
+        this.#title = title
+        this.#lessonId = lessonId
     }
     
-    get question(){
-        return this.question
+    get getQuestion(){
+        return this.#question
     }
 
-    get answer(){
-        return this.answer
+    get getAnswer(){
+        return this.#answer
     }
 
-    get options(){
-        return this.options
+    get getOptions(){
+        return this.#options
     }
 
-}
-
-export default class Exercise2{
-    phrase = ''
-    answers = ''
-    
-    constructor(phrase, answers){
-        this.phrase = phrase
-        this.answers = answers
+    get getId(){
+        return this.#id
     }
 
-    get phrase(){   
-        return this.phrase
+    get getTitle(){
+        return this.#title
     }
 
-    get answers(){
-        return this.answers
+    get getLessonId(){
+        return this.#lessonId
     }
-}
-
-export default class Exercise3{ 
-    
 }
