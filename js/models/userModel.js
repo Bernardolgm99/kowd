@@ -1,6 +1,7 @@
 export default class User{
     #id = 0
     #name = ''
+    #type = ''
     #last_name = ''
     #password = ''
     #email = ''
@@ -14,6 +15,7 @@ export default class User{
         this.#last_name = last_name
         this.#password = password
         this.#email = email
+        this.#type = type
     }
 
     //Getter
@@ -21,10 +23,11 @@ export default class User{
     get getLastName(){return this.#last_name}
     get getPassword(){return this.#password}
     get getEmail(){return this.#email}
-    get getPoint(){return this.current_exercise}
-    get getPoint(){return this.bag}
+    get getCurrentExercise(){return this.current_exercise}
+    get getBag(){return this.bag}
     get getLevel(){return this.level}
-    get getLevel(){return this.point}
+    get getPoint(){return this.point}
+    get getType(){return this.#type}
 
     //Setter
     set setEmail(email){
@@ -42,6 +45,9 @@ export default class User{
     set setPoint(point){
         this.point = point
         this.level += level
+    }
+    set setType(type){
+        this.type = type
     }
 }
 
