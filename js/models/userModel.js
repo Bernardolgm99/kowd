@@ -1,10 +1,11 @@
 export default class User{
     #id = 0
     #name = ''
+    #type = ''
     #last_name = ''
     #password = ''
     #email = ''
-    #current_exercise = 0
+    #currentExercise = 0
     #bag = [0,0,0,0]
     #level = 0
     #point = 0
@@ -14,17 +15,20 @@ export default class User{
         this.#last_name = last_name
         this.#password = password
         this.#email = email
+        this.#type = type
     }
 
     //Getter
+    get getId(){return this.#id}
     get getName(){return this.#name}
     get getLastName(){return this.#last_name}
     get getPassword(){return this.#password}
     get getEmail(){return this.#email}
-    get getPoint(){return this.#current_exercise}
-    get getPoint(){return this.#bag}
+    get getCurrentExercise(){return this.#currentExercise}
+    get getBag(){return this.#bag}
     get getLevel(){return this.#level}
-    get getLevel(){return this.#point}
+    get getPoint(){return this.#point}
+    get getType(){return this.#type}
 
     //Setter
     set setEmail(email){
@@ -33,8 +37,8 @@ export default class User{
     set setPassword(password){
         this.#password = password
     }
-    set setCurrentExercise(current_exercise){
-        this.#current_exercise = current_exercise
+    set setCurrentExercise(currentExercise){
+        this.#currentExercise = currentExercise
     }
     set setBag(bag){
         this.#bag = bag
@@ -42,5 +46,8 @@ export default class User{
     set setPoint(point){
         this.#point = point
         this.#level += point
+    }
+    set setType(type){
+        this.#type = type
     }
 }
