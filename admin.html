@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1>Hello, Admin!</h1>
+    <div class="d-flex align-items-start">
+        <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Lessons</button>
+            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Exercises</button>
+            <button class="nav-link" id="v-pills-disabled-tab" data-bs-toggle="pill" data-bs-target="#v-pills-disabled"
+                type="button" role="tab" aria-controls="v-pills-disabled" aria-selected="false">Users</button>
+        </div>
+
+
+        <div class="flex-grow-1 tab-content" id="v-pills-tabContent">
+
+            <!-- Lessons Tab -->
+            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"
+                tabindex="0">
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="btn_module">Module</button>
+                    <ul class="dropdown-menu" id="drop_lesson">
+                    </ul>
+                    <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                        placeholder="Lessons Name">
+                </div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01">Upload</label>
+                    <input type="file" class="form-control" id="inputGroupFile01">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-text">Description</span>
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                </div>
+            </div>
+
+
+
+            <!-- Exercises -->
+            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"
+                tabindex="0">
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false" id="btn_lesson">Lesson</button>
+                    <ul class="dropdown-menu" id="drop_exercises">
+                    </ul>
+                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                </div>
+
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary" id="typeExercise1" type="button">Multiple Choice</button>
+                    <button class="btn btn-outline-secondary" id="typeExercise2" type="button">True or False</button>
+                    <button class="btn btn-outline-secondary" id="typeExercise3" type="button">Correct</button>
+                </div>
+
+                <div id='form'></div>
+            </div>
+
+
+
+            <!-- Users -->
+            <div class="tab-pane fade" id="v-pills-disabled" role="tabpanel" aria-labelledby="v-pills-disabled-tab"
+                tabindex="0">...</div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+    <script src="js/adminView.js"></script>
+</body>
+
+</html>
