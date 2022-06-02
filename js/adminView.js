@@ -1,31 +1,38 @@
-import User from "./models/userModel.js"
-import Lesson from "./models/lessonModel.js"
-import Module from "./models/moduleModel.js"
-import exModel from "./models/exModel.js"
+import * as exModel from "./models/exModel.js"
+import * as Comment from "./models/commentsModel.js"
+import * as Module from "./models/moduleModel.js"
+import * as Lesson from "./models/lessonModel.js"
+import * as User from "./models/userModel.js"
 
-let arrayModules = ["Basic", "Intermediate", "Advanced"];
-let arrayLessons = ['Variable', 'Loop', 'Conditional'];
+Module.createModuleOnStorage("Basic")
+Module.createModuleOnStorage("Medium")
+Module.createModuleOnStorage("Hard")
+
+let arrayModules = JSON.parse(localStorage.getItem('modules'));
+let arrayLessons = [];
+
+if (localStorage.getItem('lessons')) arrayLessons = JSON.parse(localStorage.getItem('lessons'));
 
 
 //CREATE DROPDOWN LIST
 
-arrayModules.forEach(module =>{
-    document.querySelector('#drop_lesson').innerHTML += `<li value="${module}"><a class="dropdown-item" href="#">${module}</a></li>`
+arrayModules.forEach(module => {
+    document.querySelector('#drop_lesson').innerHTML += `<li><a class="dropdown-item" href="#">${module.name}</a></li>`
 })
 
 /* Create catch error when the target don't have "className" */
 document.querySelector('#btn_module').addEventListener('focusout', (event) => {
-    if (event.relatedTarget.className === "dropdown-item"){
+    if (event.relatedTarget.className === "dropdown-item") {
         document.querySelector('#btn_module').innerHTML = event.relatedTarget.innerHTML
     }
 })
 
-arrayLessons.forEach(lesson =>{
-    document.querySelector('#drop_exercises').innerHTML += `<li value="${lesson}"><a class="dropdown-item" href="#">${lesson}</a></li>`
+arrayLessons.forEach(lesson => {
+    document.querySelector('#drop_exercises').innerHTML += `<li><a class="dropdown-item" href="#">${lesson.name}</a></li>`
 })
 
 document.querySelector('#btn_lesson').addEventListener('focusout', (event) => {
-    if (event.relatedTarget.className === "dropdown-item"){
+    if (event.relatedTarget.className === "dropdown-item") {
         document.querySelector('#btn_lesson').innerHTML = event.relatedTarget.innerHTML
     }
 })
@@ -94,41 +101,24 @@ document.querySelector('#typeExercise3').addEventListener('click', () => {
     `
 })
 
+/*Comment.createCommentOnStorage(1,"Bernardo Lage","Bom dia!!!")
+Comment.createCommentOnStorage(2,"Bernardo Lage","Bom dia!!!")
+Comment.createCommentOnStorage(3,"Bernardo Lage","Bom dia!!!") */
 
 
+document.querySelector("#createLesson").addEventListener('click', () => {
+    const nameModule = document.querySelector('#btn_module').innerHTML
+    const nameLesson = document.querySelector('#input_lesson').value
+    const urlLesson = document.querySelector('#input_url').value
+    const description = document.querySelector('#description').value
 
 
-
-
-
-
-
-// TRYING TO CREATE A CLASS ON LOCAL STORAGE
-
-createClassOnStorage('basic','variable', '#')
-createClassOnStorage('medium','loop', '#')
-
-function createClassOnStorage(nameModule, nameLesson, urlLesson){
-    let modules = []
-    let lessons = []
-    let idModule = 1
-    let idLesson = 1
-    if (localStorage.getItem['modules']){
-        modules = JSON.parse(localStorage.getItem['modules'])
-        idModule = modules[modules.length - 1].getID + 1
+    if (nameModule != "Module") {
+        if (nameLesson != "") {
+            if (urlLesson != "") Lesson.createLessonOnStorage(nameModule, nameLesson, urlLesson, description)
+            else alert("Please select a video")
+        }
+        else alert("Please type a title")
     }
-    if (localStorage.getItem['lessons']){
-        lessons = JSON.parse(localStorage.getItem['lessons'])
-        idLesson = lessons[lessons.length - 1].getID + 1
-    }
-    modules.push(new Module(idModule,nameModule))
-    lessons.push(new Lesson(idLesson,nameLesson, urlLesson, idModule, 1))
-
-    let a = {a:1, b:2, c:3}
-    let b = []
-    b.push(a)
-    console.log(new Lesson(idLesson,nameLesson, urlLesson, idModule, 1))
-    
-    localStorage.setItem("modules", modules)
-    localStorage.setItem("lessons", JSON.stringify(lessons))
-}
+    else alert("Please select a module")
+})

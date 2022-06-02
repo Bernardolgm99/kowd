@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>Hello, Admin!</h1>
+    <h1>Hello Admin!</h1>
     <div class="d-flex align-items-start">
         <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <button class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
@@ -32,17 +32,18 @@
                         aria-expanded="false" id="btn_module">Module</button>
                     <ul class="dropdown-menu" id="drop_lesson">
                     </ul>
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button"
-                        placeholder="Lessons Name">
+                    <input id="input_lesson" type="text" class="form-control"
+                        aria-label="Text input with dropdown button" placeholder="Lessons Name">
                 </div>
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupFile01">Upload</label>
-                    <input type="file" class="form-control" id="inputGroupFile01">
+                    <input id="input_url" type="file" class="form-control" id="inputGroupFile01">
                 </div>
-                <div class="input-group">
+                <div class="input-group mb-3">
                     <span class="input-group-text">Description</span>
-                    <textarea class="form-control" aria-label="With textarea"></textarea>
+                    <textarea id="description" class="form-control" aria-label="With textarea"></textarea>
                 </div>
+                <button class="btn btn-primary" id="createLesson" type="button">Send</button>
             </div>
 
 
