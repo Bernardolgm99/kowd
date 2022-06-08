@@ -39,66 +39,84 @@ document.querySelector('#btn_lesson').addEventListener('focusout', (event) => {
 
 
 
-
-
-
-
-
-
-document.querySelector('#typeExercise1').addEventListener('click', () => {
+document.querySelector('#typeExercise2').addEventListener('click', () => {
     document.querySelector('#form').innerHTML = `
     <div class="mb-3" id="v-pills-tab">
         <div class="input-group mb-3">
             <span class="input-group-text">Answer</span>
-            <input type="text" aria-label="" class="form-control">
+            <input id="answer" type="text" aria-label="" class="form-control">
         </div>
         <div class="input-group" id="typeExercise1Form">
-            <span class="input-group-text">Options</span>
-            <input type="text" aria-label="" class="form-control">
-            <input type="text" aria-label="" class="form-control">
-            <input type="text" aria-label="" class="form-control">
-            <input type="text" aria-label="" class="form-control">
+            <span class="input-group-text">Wrong Answers</span>
+            <input id="option1" type="text" aria-label="" class="form-control">
+            <input id="option2" type="text" aria-label="" class="form-control">
+            <input id="option3" type="text" aria-label="" class="form-control">
         </div>
     </div>
-    <button class="btn btn-primary" id="typeExercise1" type="button">Send</button>
+    <button class="btn btn-primary" id="exerciseSend" type="button">Send</button>
     `
+    document.querySelector("#exerciseSend").addEventListener("click", () => {
+        const lesson = document.querySelector("#btn_lesson").innerHTML
+        const text_exercise = document.querySelector("#text-exercise").value
+        const answer = document.querySelector("#answer").value
+        const option1 = document.querySelector("#option1").value
+        const option2 = document.querySelector("#option2").value
+        const option3 = document.querySelector("#option3").value
+        const options = [option1, option2, option3]
+        exModel.createExerciseType2OnStorage(text_exercise, answer, options, lesson)
+    })
 })
 
-document.querySelector('#typeExercise2').addEventListener('click', () => {
+
+document.querySelector('#typeExercise1').addEventListener('click', () => {
     document.querySelector('#form').innerHTML = `
     <div class="mb-3">
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-            <label class="form-check-label" for="flexRadioDefault1">
+            <input class="form-check-input" type="radio" name="answer" id="answer1" value="true">
+            <label class="form-check-label" for="answer1">
                 True
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
+            <input class="form-check-input" type="radio" name="answer" id="answer2" value="false" checked>
+            <label class="form-check-label" for="answer2">
                 False
             </label>
         </div>
     </div>
-    <button class="btn btn-primary" id="typeExercise1" type="button">Send</button>
+    <button class="btn btn-primary" id="exerciseSend" type="button">Send</button>
     `
+    document.querySelector("#exerciseSend").addEventListener("click", () => {
+        const lesson = document.querySelector("#btn_lesson").innerHTML
+        const text_exercise = document.querySelector("#text-exercise").value
+        const answer = document.querySelector('input[name="answer"]:checked').value
+        exModel.createExerciseType1OnStorage(text_exercise, answer, lesson)
+    })
 })
+
 
 document.querySelector('#typeExercise3').addEventListener('click', () => {
     document.querySelector('#form').innerHTML = `
     <div class="mb-3">
         <div class="input-group mb-3">
             <span class="input-group-text">Question</span>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea id="question" class="form-control" aria-label="With textarea"></textarea>
         </div>
         <div class="input-group mb-1">
             <span class="input-group-text">Answer</span>
-            <input type="text" aria-label="" class="form-control">
+            <input id="answer" type="text" aria-label="" class="form-control">
         </div>
         <p class="text-secondary">Please, put a comma between answers</p>
     </div>
-    <button class="btn btn-primary" id="typeExercise1" type="button">Send</button>
+    <button class="btn btn-primary" id="exerciseSend" type="button">Send</button>
     `
+    document.querySelector("#exerciseSend").addEventListener("click", () => {
+        const lesson = document.querySelector("#btn_lesson").innerHTML
+        const text_exercise = document.querySelector("#text-exercise").value
+        const question = document.querySelector("#question").value
+        const answer = document.querySelector("#answer").value
+        exModel.createExerciseType3OnStorage(text_exercise, answer, lesson, question)
+    })  
 })
 
 /*Comment.createCommentOnStorage(1,"Bernardo Lage","Bom dia!!!")
