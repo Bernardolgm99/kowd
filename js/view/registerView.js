@@ -31,9 +31,12 @@ document.querySelector('#btnRegisterAcc').addEventListener('click', () => {
     let pwValue = pw.value
     let confirm_pwValue = confirm_pw.value
 
+    let newEmail = usersData.find(user => user.email == email)
+
+
     //VERIFICATION TO SEE IF THE PASSWORDS MATCH WITH EACH OTHER
     try{
-        if(pwValue == confirm_pwValue ) {
+        if((pwValue == confirm_pwValue) && (newEmail == undefined)) {
             usersData.push(new User(first_name, last_name, pwValue, email, 0))
             console.log(usersData)
             localStorage.setItem('users', JSON.stringify(usersData))
