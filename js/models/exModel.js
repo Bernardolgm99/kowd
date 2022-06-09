@@ -60,6 +60,9 @@ export function createExerciseType3OnStorage(question, answer, nameLesson, quest
         idExercise = exercises[exercises.length - 1].id + 1
     }
 
+    // correcting the answer for reading easily with code
+    question = question.replace(/,/g, '').split('').join(',')
+
     // if the question isn't aready exist create a class Exercise and do a push
     if (!exercises.filter(exercise => { if (exercise.question == question) return true; else return false }).length) exercises.push(new Type3Exercise(idExercise, 3, question, answer, idLesson, question_text))
 
