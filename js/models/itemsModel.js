@@ -5,7 +5,7 @@ export default class Item{
     value = 0
     img = ''
     constructor(name, description, value = 0, img) {
-        this.id =  (itemArray.length == 0 ? 1 : itemArray[itemArray.length - 1].id + 1);
+        this.id =  'b' + (itemArray.length == 0 ? 1 : itemArray[itemArray.length - 1].id + 1);
         this.name = name;
         this.description = description;
         this.value = value;
