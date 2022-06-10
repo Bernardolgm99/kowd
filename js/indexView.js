@@ -8,6 +8,6 @@ function typeWriter(element){
     })
 }
 
-let title = document.querySelector('h1')
+let title = document.querySelector('.type-writer')
 
 typeWriter(title)

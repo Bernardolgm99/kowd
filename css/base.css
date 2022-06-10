@@ -1,8 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+
 body{
-    background-color: #000;
+    background-color: #111;
+    width: 101%;
+    color: #bbb;
+    display: table-footer-group;
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+img {
+    height: 100px;
+    width: 100px;
+}
+
+nav img {
+    width:50px;
+    height:50px
 }
 
 .exercise {
     background-color: #000;
     color: #fff;
+}
+
+.header-landingpage {
+    display: flex;
+}
+
+.header-landingpage div {
+    
 }
