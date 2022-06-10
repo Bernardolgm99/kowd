@@ -1,0 +1,131 @@
+@keyframes controler-disappear {
+    0% {
+        bottom:0px;
+    }
+
+    100% {
+        bottom:-35px;
+    }
+}
+
+@keyframes controler-appear {
+    0% {
+        bottom:-35px;
+    }
+    
+    100% {
+        bottom:0px;
+    }
+}
+
+.container-video {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+}
+
+.video {
+    width: 100%;
+}
+
+.video-player {
+    width: 100%;
+    max-width: 800px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.timer-slider-text {
+    position: absolute;
+    bottom:40px;
+    font-size:10px;
+    color: #fff;
+}
+
+.controler {
+    display: grid;
+    position: absolute;
+    background: rgba(255,0,0,0.5);
+    width: 100%;
+    bottom: -35px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%);
+    animation-name: controler-disappear;
+    animation-duration: 0.3s;
+}
+
+.controler-appear {
+    display: grid;
+    position: absolute;
+    background: rgba(255,0,0,0.5);
+    width: 100%;
+    bottom: 0px;
+    background: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.9) 100%);
+    animation-name: controler-appear;
+    animation-duration: 0.3s;
+}
+
+.btns-player-group {
+    padding: 3px
+}
+
+.btn-right {
+    float: right;
+}
+
+.btn-left {
+    float: left;
+}
+
+.timer {
+    -webkit-appearance: none;
+    position: relative;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, rgb(255, 136, 0) 0%, rgba(0, 0, 0, 0.6) 0%);
+    animation-name: timeline-disapper;
+    animation-duration: 1s;
+}
+
+.timer-appear {
+    -webkit-appearance: none;
+    position: relative;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, rgb(255, 136, 0) 0%, rgba(0, 0, 0, 0.6) 0%);
+    animation-name: timeline-apper;
+    animation-duration: 1s;
+}
+
+.timer::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+}
+
+.volume {
+    -webkit-appearance: none;
+    position: relative;
+    top: -3px;
+    width: 69px;
+    height: 4px;
+    border-radius: 50px;
+    background: linear-gradient(90deg, rgba(255, 136, 0, 1) 50%, rgba(0, 0, 0, 0.6) 50%)
+}
+
+.volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: rgb(255, 136, 0);
+    border-radius: 50%;
+}
+
+.btn-player {
+    background-color: transparent;
+    color: #ccc;
+    border: none;
+    position: relative;
+}
