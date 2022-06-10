@@ -40,7 +40,7 @@ export function login(email, password){
 
     if(loggedUser != undefined){
         alert('welcome back!')
-        localStorage.setItem('Current_user', JSON.stringify(loggedUser))
+        localStorage.setItem('currentUser', JSON.stringify(loggedUser))
     } else {
         throw Error('Email or password are invalid! Please try again')
     }

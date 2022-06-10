@@ -51,7 +51,7 @@ function initdata() {
         console.log('admin data injected')
     }
 
-    if(!localStorage.Current_user) {
+    if(!localStorage.currentUser) {
         currentUser = {
             id: 2,
              first_name: 'John',
@@ -64,7 +64,7 @@ function initdata() {
              level: 0,
              point: 0
         }
-        localStorage.setItem('Current_user', JSON.stringify(currentUser))
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
         console.log('current user data injected')
     }
 }
