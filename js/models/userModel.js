@@ -4,15 +4,33 @@ let usersData = JSON.parse(localStorage.users)
 export function register(first_name, last_name, email, password, confirm_password) {
     let newEmail = usersData.find(user => user.email == email)
     
-//VERIFICATION TO SEE IF THE PASSWORDS MATCH WITH EACH OTHER
+    
+    //VERIFICATION TO SEE IF THE PASSWORDS MATCH WITH EACH OTHER
     if((password == confirm_password) && (newEmail == undefined)) {
-        usersData.push(new User(first_name, last_name, password, email, 0))
-        localStorage.setItem('users', JSON.stringify(usersData))
-        window.location.href = "./login.html"
-    } else {
+        /*let validation = validateEmail(email)
+        if(validation == true) {*/
+            usersData.push(new User(first_name, last_name, password, email, 0))
+            localStorage.setItem('users', JSON.stringify(usersData))
+            window.location.href = "./login.html"
+        } else {
+            throw Error('Invalid Email Address')
+        }
+    /*} else {
         throw Error('Something went wrong, try again.')
-    }
+    }*/
 }
+
+//EMAIL VERIFICATION
+/*function validateEmail(email) {
+    console.log(email)
+    console.log(email.match(/^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/));
+    if(email.match(/^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/))
+  {
+    return (true)
+  }
+    return (false)
+}*/
+
 
 //LOGIN USER
 export function login(email, password){
@@ -22,7 +40,7 @@ export function login(email, password){
 
     if(loggedUser != undefined){
         alert('welcome back!')
-        localStorage.setItem('Current User', JSON.stringify(loggedUser))
+        localStorage.setItem('Current_user', JSON.stringify(loggedUser))
     } else {
         throw Error('Email or password are invalid! Please try again')
     }
