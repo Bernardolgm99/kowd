@@ -50,4 +50,21 @@ function initdata() {
         localStorage.setItem('admins', JSON.stringify(admins))
         console.log('admin data injected')
     }
+
+    if(!localStorage.currentUser) {
+        currentUser = {
+            id: 2,
+             first_name: 'John',
+             last_name: 'Doe',
+             password: '1234',
+             email: 'johndoe@example.com',
+             type: 0,
+             currentExercise: 0,
+             bag: [0,0,0,0],
+             level: 0,
+             point: 0
+        }
+        localStorage.setItem('Current_user', JSON.stringify(currentUser))
+        console.log('current user data injected')
+    }
 }
