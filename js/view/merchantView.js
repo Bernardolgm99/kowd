@@ -1,54 +1,61 @@
 import * as Item from "../models/itemsModel.js"
-//JSON.parse(localStorage.getItem('users'))
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 if (!(localStorage.getItem('currentUser'))) window.location.href = "../../html/login.html"
-console.log(currentUser)
+//console.log(currentUser)
 //render points
 function renderPoints() {
-    let pointPlace = document.querySelector('#points')
+    let pointPlace = document.querySelector('.points')
     pointPlace.innerHTML = `<p>${currentUser.point} points</p>`
 }
 
 //merchantLines
 function merchantLines(value){
-    let merchantLinePlace = document.querySelector('#merchantLines')
-    switch(value) {
-        case 0:
-            let linesArray = [`Hello ${currentUser.first_name}, you can take anything as long as you have enough coins.`,`I see that you are interesed in my wares`,`Welcome back ${currentUser.first_name}, I'm glad to see you well once more, please take anything you want.`]
+    console.log(value)
+    let merchantLinePlace = document.querySelector('.merchantLines')
+    if (value == 0) {
+        let linesArray = [`Hello ${currentUser.first_name}, you can take anything as long as you have enough coins.`,`I see that you are interesed in my wares`,`Welcome back ${currentUser.first_name}, I'm glad to see you well once more, please take anything you want.`]
             merchantLinePlace.innerHTML = `<p>${linesArray[Math.floor(Math.random() * linesArray.length)]}</p>`
-
+    } else if(value == 1){
+        merchantLinePlace.innerHTML = `<p>Come on, you and I both know you don't have enougth coins for that</p>`
+    } else if(value == 2){
+        merchantLinePlace.innerHTML = `<p>Come on... You already have that item in the bag, didn't you notice?</p>`
+    } else {
+        merchantLinePlace.innerHTML = `<p>What a great purchase you made today, buy anything that you what</p>`
     }
-}
 
+}
+merchantLines(0)
 //create list
 renderShop()
 function renderShop() {
-    let shop = document.querySelector('#shop')
+    let shop = document.querySelector('.shop')
     shop.innerHTML = ``
-    //na renderShop se ja tiver algum na mochila mostra comprado
-    //bag por id ou nome
-    //apanhar bag e comparar
-    console.log(currentUser)
     if ((currentUser.bag).length > 0) {
         for (let itens of Item.itemArray) {
             find: {
                 for(let item of currentUser.bag){
                     if (item == itens.id) {
                         shop.innerHTML += `
-                            <div class="row mb-3">
-                            <p id="txt-large">${itens.name}</p> 
-                            <p id="txt-small">${itens.description}</p>
-                            <button class="item sold" id="${itens.id}">SOLD!</button>     
-                            </div>`
+                            <div class="row mb-3 shopItem">
+                                <img src="">
+                                <p id="txt-large">${itens.name}</p> 
+                                <p id="txt-small">${itens.description}</p>
+                                <button class="item sold" id="${itens.id}">SOLD!</button>     
+                                <hr>
+                            </div>
+                            `
                         break find
                     }
                 }
                 shop.innerHTML += `
-                <div class="row mb-3">
-                <p id="txt-large">${itens.name}</p> 
-                <p id="txt-small">${itens.description}</p>
-                <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
-                </div>`
+                <div class="row mb-3 shopItem">
+                    <img src="">
+                    <p id="txt-large">${itens.name}</p> 
+                    <p id="txt-small">${itens.description}</p>
+                    <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
+                    <hr>
+                </div>
+                `
             }
         }
     }
@@ -56,17 +63,19 @@ function renderShop() {
     else {
         for (let itens of Item.itemArray) {
             shop.innerHTML += `
-                <div class="row mb-3">
+                <div class="row mb-3 shopItem">
+                    <img src="">
                     <p id="txt-large">${itens.name}</p> 
                     <p id="txt-small">${itens.description}</p>
                     <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
-                </div>`
+                    <hr>
+                </div>
+                `
         }
 
     }
     renderBtn()
     renderPoints()
-    merchantLines(0)
 }
 
 function renderBtn() {
@@ -83,9 +92,12 @@ function renderBtn() {
                 if ((currentUser.bag.find(item => item == itemShop.id)) == undefined && currentUser.point >= itemShop.value) {
                     (currentUser.bag).push(itemShop.id)
                     currentUser.point = currentUser.point - itemShop.value
+                    merchantLines(3)
                     //update inlocalstorage UserBag
-                } else {
+                } else if((currentUser.bag.find(item => item == itemShop.id))) {
                     merchantLines(2)
+                } else {
+                    merchantLines(1)
                 }
             } else {
                 if(currentUser.point >= itemShop.value){
