@@ -1,9 +1,24 @@
-import * as User from "../models/userModel.js"
 import * as Item from "../models/itemsModel.js"
 //JSON.parse(localStorage.getItem('users'))
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 if (!(localStorage.getItem('currentUser'))) window.location.href = "../../html/login.html"
-//get items Item.itemArray
+console.log(currentUser)
+//render points
+function renderPoints() {
+    let pointPlace = document.querySelector('#points')
+    pointPlace.innerHTML = `<p>${currentUser.point} points</p>`
+}
+
+//merchantLines
+function merchantLines(value){
+    let merchantLinePlace = document.querySelector('#merchantLines')
+    switch(value) {
+        case 0:
+            let linesArray = [`Hello ${currentUser.first_name}, you can take anything as long as you have enough coins.`,`I see that you are interesed in my wares`,`Welcome back ${currentUser.first_name}, I'm glad to see you well once more, please take anything you want.`]
+            merchantLinePlace.innerHTML = `<p>${linesArray[Math.floor(Math.random() * linesArray.length)]}</p>`
+
+    }
+}
 
 //create list
 renderShop()
@@ -50,6 +65,8 @@ function renderShop() {
 
     }
     renderBtn()
+    renderPoints()
+    merchantLines(0)
 }
 
 function renderBtn() {
@@ -65,19 +82,21 @@ function renderBtn() {
                 console.log(currentUser.point)
                 if ((currentUser.bag.find(item => item == itemShop.id)) == undefined && currentUser.point >= itemShop.value) {
                     (currentUser.bag).push(itemShop.id)
+                    currentUser.point = currentUser.point - itemShop.value
                     //update inlocalstorage UserBag
                 } else {
-                    alert(`${itemShop.name} already bought`)
+                    merchantLines(2)
                 }
             } else {
                 if(currentUser.point >= itemShop.value){
                     (currentUser.bag).push(itemShop.id)
                 } else {
-                    alert(`${itemShop.name} already bought`)
+                    merchantLines(1)
                 }
             }
             (currentUser.bag).sort()
             renderShop()
+            renderPoints()
         })
         //add item
         //ler valor de pontos do utiliador

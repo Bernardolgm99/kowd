@@ -62,7 +62,7 @@ function initdata() {
              currentExercise: 0,
              bag: [2],
              level: 0,
-             point: 0
+             point: 22500
         }
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
         console.log('current user data injected')
