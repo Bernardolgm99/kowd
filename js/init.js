@@ -60,7 +60,7 @@ function initdata() {
              email: 'johndoe@example.com',
              type: 0,
              currentExercise: 0,
-             bag: [0,0,0,0],
+             bag: [2],
              level: 0,
              point: 0
         }
