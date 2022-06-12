@@ -2,26 +2,44 @@
 @import url('http://fonts.cdnfonts.com/css/minecraftia');
 
 body{
-    background-color: .111;
-    width: 100%;
-    background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     display: table-footer-group;
     font-family: 'IBM Plex Mono', monospace;
+    background-image: url('../media/img/merchantBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+
     display: flex;
     flex-direction: column;
 }
+
+.background {
+    display: flex;
+    flex-direction: column;
+    
+}
+
 .merchant {
    width: 238px;
    height: auto; 
 }
 
 .shopHeader {
-    width: 1060;
+    max-width: 1060;
+    position: relative;
     display: flex;
     align-items: center;
     margin: auto;
     font-family: 'Minecraftia';
+}
+
+.boxes {
+    display: flex;
+    align-items: center;
+    margin-top: 4%;
+    margin-left: -3%;
 }
 
 .points {
@@ -30,24 +48,25 @@ body{
     background-color: rgba(175, 255, 242, 0.45);
     text-align: center;
     border: 4px solid rgba(7, 189, 162, 1);
-    margin-top: auto;
     margin-bottom: auto;
     align-self: flex-end;
+    border-radius: 10px;
 }
 
 .points p {
-    margin-top: 20%;
-
+    margin-top: 18%;
 }
 
 .merchantLines {
     width: 650;
-    height: 94;
+    height: 96;
     background-color: rgba(175, 255, 242, 0.45);
     text-align: center;
     border: 4px solid rgba(7, 189, 162, 1);
-    margin: auto;
     margin-left: -11%;
+    margin-right: auto;
+    border-radius: 10px;
+    border-bottom-left-radius: 200px;
     z-index: -1;
 }
 .merchantLines p {
@@ -57,24 +76,41 @@ body{
 }
 
 .shop {
-    width: 1060;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(26, 26, 26, 1);
+    width: 1060px;
+    position:absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
     margin: auto;
+
+    display: grid;
+    grid-template-columns: auto;
+    background-color: rgba(26, 26, 26, 0.75);
+    align-self: bottom;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .shopItem {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
     align-items: center;
-    background-color: blue;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 3%;
+    margin-right: 3%;
+    margin-top:  2%;
 }
 
-.shopItem img {
+.shopItem hr {
+    display: flex;
+    grid-column: 1 / span 5;
+    grid-row: 5;
+}
+
+.shopItem .img {
     width: 70px;
-    height: 70px;
+    height: 25px;
+    font-size: 2px;
+    text-align: center;
 }
 
 .shopItem button {

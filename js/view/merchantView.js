@@ -36,26 +36,26 @@ function renderShop() {
                 for(let item of currentUser.bag){
                     if (item == itens.id) {
                         shop.innerHTML += `
-                            <div class="row mb-3 shopItem">
-                                <img src="">
+                            <div class="row shopItem mb-3">
+                                <img src="${itens.img}">
                                 <p id="txt-large">${itens.name}</p> 
                                 <p id="txt-small">${itens.description}</p>
                                 <button class="item sold" id="${itens.id}">SOLD!</button>     
-                                <hr>
+                                
                             </div>
-                            `
+                            <hr>`
                         break find
                     }
                 }
+                console.log(itens.img)
                 shop.innerHTML += `
-                <div class="row mb-3 shopItem">
-                    <img src="">
+                <div class="row shopItem mb-3">
+                    <img src="${itens.img}">
                     <p id="txt-large">${itens.name}</p> 
                     <p id="txt-small">${itens.description}</p>
                     <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
-                    <hr>
                 </div>
-                `
+               <hr> `
             }
         }
     }
@@ -63,14 +63,13 @@ function renderShop() {
     else {
         for (let itens of Item.itemArray) {
             shop.innerHTML += `
-                <div class="row mb-3 shopItem">
-                    <img src="">
+                <div class="row shopItem mb-3">
+                    <img src="${itens.img}">
                     <p id="txt-large">${itens.name}</p> 
                     <p id="txt-small">${itens.description}</p>
                     <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
-                    <hr>
                 </div>
-                `
+                <hr>`
         }
 
     }
@@ -110,14 +109,5 @@ function renderBtn() {
             renderShop()
             renderPoints()
         })
-        //add item
-        //ler valor de pontos do utiliador
-        //alterar esses valores
-        //ver se tem na michila
     })
-
 }
-
-
-//verificar o que o user tem na mochila
-//render
