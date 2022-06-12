@@ -10,7 +10,6 @@ body{
     background-size: cover;
     background-position: center;
     height: 100vh;
-
     display: flex;
     flex-direction: column;
 }
@@ -106,9 +105,8 @@ body{
     grid-row: 5;
 }
 
-.shopItem .img {
-    width: 70px;
-    height: 25px;
+.shopItem img {
+    width: 100px;
     font-size: 2px;
     text-align: center;
 }

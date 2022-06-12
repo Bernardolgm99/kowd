@@ -41,7 +41,6 @@ function renderShop() {
                                 <p id="txt-large">${itens.name}</p> 
                                 <p id="txt-small">${itens.description}</p>
                                 <button class="item sold" id="${itens.id}">SOLD!</button>     
-                                
                             </div>
                             <hr>`
                         break find
