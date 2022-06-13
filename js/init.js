@@ -31,8 +31,6 @@ function initdata() {
         console.log('user data injected')
     }
 
-
-
     if(!localStorage.admins) {
         admins = [
             {id: 1,
@@ -66,5 +64,62 @@ function initdata() {
         }
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
         console.log('current user data injected')
+    }
+    
+    if(!localStorage.modules) {
+        modules = [{
+            id: 1,
+            name: 'Module1'
+        } , {
+            id: 2,
+            name: 'Module2'
+        } , {
+            id: 3,
+            name: 'Module3'
+        }]
+        localStorage.setItem('modules', JSON.stringify(modules))
+        console.log('modules data injected')
+    }
+
+    if(!localStorage.lessons) {
+        lessons = [{
+            id: 1,
+            name: 'so vim dizer yau',
+            url: '',
+            popularity: 2,
+            idModule: 1,
+            description: 'yauyauyau',
+        } , {
+            id: 2,
+            name: 'so vim dizer yau',
+            url: '',
+            popularity: 2,
+            idModule: 1,
+            description: 'yauyauyau',
+        } , {
+            id: 3,
+            name: 'so vim dizer yau',
+            url: '',
+            popularity: 2,
+            idModule: 2,
+            description: 'yauyauyau',
+        } , {
+            id: 4,
+            name: 'so vim dizer yau',
+            url: '',
+            popularity: 2,
+            idModule: 3,
+            description: 'yauyauyau',
+        }]
+        localStorage.setItem('lessons', JSON.stringify(lessons))
+        console.log('lessons data injected')
+    }
+
+    if(localStorage.exercises) {
+        exercises = [{
+            
+        }
+
+        ]
     }
 }
