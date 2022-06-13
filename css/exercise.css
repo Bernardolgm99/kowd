@@ -1,0 +1,16 @@
+.section-black {
+    background-color: #000;
+    color: #fff;
+}
+
+.section-black > div {
+    height: 94vh;
+}
+
+.section-black > div > div {
+    height: 100%;
+}
+
+.section-black > div > div > div:last-child {
+    height: 100%;
+}
