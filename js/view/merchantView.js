@@ -29,32 +29,34 @@ merchantLines(0)
 renderShop()
 function renderShop() {
     let shop = document.querySelector('.shop')
-    shop.innerHTML = ``
+    //shop.innerHTML = ``
     if ((currentUser.bag).length > 0) {
         for (let itens of Item.itemArray) {
             find: {
                 for(let item of currentUser.bag){
                     if (item == itens.id) {
                         shop.innerHTML += `
-                            <div class="row shopItem mb-3">
+                            <div class="row shopItem mb-3" id="scrollspyHeading1">
                                 <img src="${itens.img}">
                                 <p id="txt-large">${itens.name}</p> 
                                 <p id="txt-small">${itens.description}</p>
                                 <button class="item sold" id="${itens.id}">SOLD!</button>     
+                                <div class="hr"></div>
                             </div>
-                            <hr>`
+                            `
                         break find
                     }
                 }
                 console.log(itens.img)
                 shop.innerHTML += `
-                <div class="row shopItem mb-3">
+                <div class="row shopItem mb-3" id="scrollspyHeading1">
                     <img src="${itens.img}">
                     <p id="txt-large">${itens.name}</p> 
                     <p id="txt-small">${itens.description}</p>
                     <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
+                    <div class="hr"></div>
                 </div>
-               <hr> `
+                `
             }
         }
     }
@@ -62,13 +64,14 @@ function renderShop() {
     else {
         for (let itens of Item.itemArray) {
             shop.innerHTML += `
-                <div class="row shopItem mb-3">
+                <div class="row shopItem mb-3" id="scrollspyHeading1">
                     <img src="${itens.img}">
                     <p id="txt-large">${itens.name}</p> 
                     <p id="txt-small">${itens.description}</p>
                     <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
+                    <div class="hr"></div>
                 </div>
-                <hr>`
+                `
         }
 
     }
