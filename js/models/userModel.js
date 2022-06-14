@@ -1,5 +1,5 @@
-let usersData = JSON.parse(localStorage.users)
-
+/* let usersData = JSON.parse(localStorage.users)
+ */
 //REGISTER USER
 export function register(first_name, last_name, email, password, confirm_password) {
     let newEmail = usersData.find(user => user.email == email)
@@ -46,6 +46,16 @@ export function login(email, password){
     }
 }
 
+export function attUserOnStorage(attUser){
+    let users = JSON.parse(localStorage.getItem('users'))
+    users.forEach((user,i) => {
+        console.log(user.id === attUser.id);
+        console.log(user.id, attUser.id);
+        if (user.id === attUser.id) users[i] = attUser
+    })
+    localStorage.setItem('users', JSON.stringify(users))
+}
+
 export default class User{
     id = 0
     first_name = ''
@@ -53,7 +63,7 @@ export default class User{
     password = ''
     email = ''
     type = 0 //(0 - user) (1 - admin)
-    currentExercise = 0
+    exercises_finished = 0
     bag = [0,0,0,0]
     level = 0
     point = 0

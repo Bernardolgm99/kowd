@@ -70,7 +70,7 @@ export function createExerciseType3OnStorage(question, answer, nameLesson, quest
     localStorage.setItem("exercises", JSON.stringify(exercises))
 }
 
-Exercise(1,2,3,4)
+
 // class and extends how needs for other types of exercises
 class Exercise {
     constructor(id, type, question, answer, lessonId) {
