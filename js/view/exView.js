@@ -1,40 +1,63 @@
 import * as User from "../models/userModel.js"
 
+localStorage.setItem("currentUser", JSON.stringify({
+    bag: [2],
+    email: "johndoe@example.com",
+    exercises_finished: 0,
+    first_name: "John",
+    id: 2,
+    last_name: "Doe",
+    level: 0,
+    password: "1234",
+    point: 1870,
+    type: 0
+}))
+
+
 const exercise_point = 100
 const exercise_point_bonus = 1000
-const exercise_point_repeated = 0
-
+const exercise_point_repeated = 10
 let exerciseId = JSON.parse(localStorage.getItem('currentExercise')).id
 let lessonId = JSON.parse(localStorage.getItem('currentLesson')).id
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 let exercisesInLesson = JSON.parse(localStorage.getItem('exercises')).filter(exercise => exercise.lessonId == lessonId)
+
+let consoleView = document.querySelector('.console')
 
 const div = document.querySelector('.exercise')
 let currentExercise = exercisesInLesson.find(exercise => exercise.id === exerciseId)
 console.log(currentExercise)
 const exercises = JSON.parse(localStorage.getItem('exercises'))
 
+
+consoleView.querySelector('p').innerHTML += `<br>C:\\Users\\${currentUser.first_name}>`
+
+
 templateExercise()
 
 function templateExercise() {
-    div.innerHTML = `
-    <h1 class="mb-5">Exercise #${exercises.findIndex(exercise => exercise.id === currentExercise.id) + 1}</h1>
-    <div class="col-lg-6 col-sm-12 mb-3 fs-3"><p>${currentExercise.question}</p></div>`
+    try {
+        div.innerHTML = `
+        <h1 class="mb-5">Exercise #${exercises.findIndex(exercise => exercise.id === currentExercise.id) + 1}</h1>
+        <div class="col-lg-6 col-sm-12 mb-3 fs-3"><p>${currentExercise.question}</p></div>`
+
+    } catch (error) {
+        return
+    }
 
     switch (currentExercise.type) {
         case 1:
-            div.childNodes[3].className = "col-12 mb-3"
+            console.log(div.childNodes);
+            div.childNodes[3].className = "col-lg-12 col-sm-12 mb-3 fs-3 "
 
             div.innerHTML += `
-            <div id="test" class="col-12 row justify-content-evenly">
-            <button class="btn btn-primary col-lg-5 col-sm-12 true">True</button>
-            <button class="btn btn-primary col-lg-5 col-sm-12 false">False</button>
+            <div class="col-12 row bd-highlight justify-content-evenly" style="margin: 0 auto;">
+            <button class="btn btn-primary mb-2 col-lg-5 col-sm-12 true">True</button>
+            <button class="btn btn-primary mb-2 col-lg-5 col-sm-12 false">False</button>
             </div>
             `
             if (currentExercise.answer == "true") {
                 document.querySelector('.true').addEventListener('click', rightAnswer)
-                document.querySelector('.true').setAttribute('data-bs-toggle', 'modal')
-                document.querySelector('.true').setAttribute('data-bs-target', '#modalAnswer')
                 document.querySelector('.false').addEventListener('click', wrongAnswer)
                 document.querySelector('.false').setAttribute('data-bs-toggle', 'modal')
                 document.querySelector('.false').setAttribute('data-bs-target', '#modalAnswer')
@@ -44,8 +67,6 @@ function templateExercise() {
                 document.querySelector('.true').setAttribute('data-bs-toggle', 'modal')
                 document.querySelector('.true').setAttribute('data-bs-target', '#modalAnswer')
                 document.querySelector('.false').addEventListener('click', rightAnswer)
-                document.querySelector('.false').setAttribute('data-bs-toggle', 'modal')
-                document.querySelector('.false').setAttribute('data-bs-target', '#modalAnswer')
             }
             break
         case 2:
@@ -75,8 +96,6 @@ function templateExercise() {
 
             //Add fuctions to buttons
             document.querySelector('.true').addEventListener('click', rightAnswer)
-            document.querySelector('.true').setAttribute('data-bs-toggle', 'modal')
-            document.querySelector('.true').setAttribute('data-bs-target', '#modalAnswer')
             document.querySelectorAll('.false').forEach((button) => {
                 button.addEventListener('click', wrongAnswer)
                 button.setAttribute('data-bs-toggle', 'modal')
@@ -104,10 +123,28 @@ function templateExercise() {
                 })
                 answers_user = answers_user.join()
                 if (answers_user === currentExercise.answer) rightAnswer()
-                else wrongAnswer()
+                else {
+                    wrongAnswer()
+                    document.querySelector('#submit').setAttribute('data-bs-toggle', 'modal')
+                    document.querySelector('#submit').setAttribute('data-bs-target', '#modalAnswer')
+                    document.querySelector('#submit').click()
+                    document.querySelector('#submit').removeAttribute('data-bs-toggle')
+                    document.querySelector('#submit').removeAttribute('data-bs-target')
+                }
             })
-            document.querySelector('#submit').setAttribute('data-bs-toggle', 'modal')
-            document.querySelector('#submit').setAttribute('data-bs-target', '#modalAnswer')
+
+            let inputs = div.childNodes[4].childNodes[0].querySelectorAll('input')
+            inputs[0].focus()
+            console.log(inputs);
+            inputs.forEach((input, i) => {
+                input.addEventListener('keyup', (event) => {
+                    if ((event.key.toLowerCase() === 'backspace'|| event.key.toLowerCase() === 'delete') && i!=0) {
+                        inputs[i - 1].value = '';
+                        inputs[i - 1].focus()
+                    }
+                    else if (!(event.key.toLowerCase() === 'backspace'|| event.key.toLowerCase() === 'delete') && inputs.length - 1 != i) inputs[i + 1].focus()
+                })
+            })
     }
 }
 
@@ -116,71 +153,57 @@ function templateExercise() {
 function rightAnswer() {
     const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
     if (currentUser.exercises_finished < currentExercise.id) {
-        console.log(currentUser.exercises_finished)
-        modal_content.innerHTML = `
-            <div class="modal-body">
-                ${currentUser.first_name}, you're right.<br>
-                Will reciave:<br>
-                -> ${exercise_point} points<br>
-                -> Desbloque exercise ${currentExercise.id + 1}
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Next</button>
-            </div>
-        `
-        if (!exercisesInLesson[currentExercise.id]) {
-            modal_content.querySelector('.modal-body').innerHTML = `
-                ${currentUser.first_name}, you're right.<br>
-                Will reciave:<br>
-                -> ${exercise_point} points<br>
-                -> Desbloque lesson ${lessonId + 1}
-                <br>-> Bonus: ${exercise_point_bonus} points<br>
-                (finish lesson)
-            `
-            modal_content.querySelector('button').innerHTML = `Finish`
-            modal_content.querySelector('button').addEventListener('click', () => {
-                window.location.href = "index.html"
+        if (exercisesInLesson[currentExercise.id]) {
+            console.log(currentUser.exercises_finished)
+            consoleView.querySelector('p').innerHTML += `<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;${currentUser.first_name}, you're right.<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Will receive:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;-> ${exercise_point} points<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;-> Unlock exercise ${currentExercise.id + 1}<br><br>
+            C:\\Users\\${currentUser.first_name}>`
+        } else {
+            consoleView.querySelector('p').innerHTML += `<br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;${currentUser.first_name}, you're right.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Will receive:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;-> ${exercise_point} points<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;-> Unlock lesson ${lessonId + 1}<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;-> Bonus: ${exercise_point_bonus} points<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;(finish lesson)<br><br>
+                C:\\Users\\${currentUser.first_name}>`
+            console.log(consoleView.parentNode);
+            consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-primary">Finished</button></div>`
+            consoleView = document.querySelector('.console')
+            consoleView.parentNode.querySelector('button').addEventListener('click', () => {
+                window.location.href = "../index.html"
             })
             currentUser.point += exercise_point_bonus
         }
-        else {
-            modal_content.querySelector('button').addEventListener('click', () => {
-                currentExercise = exercisesInLesson.find(exercise => exercise.id == currentExercise.id + 1)
-                console.log(currentExercise);
-                templateExercise()
-            })
-        }
         currentUser.exercises_finished = currentExercise.id
         currentUser.point += exercise_point
-        localStorage.setItem('currentUser', JSON.stringify(currentUser))
-        User.attUserOnStorage(currentUser)
-    }
-    else {
-        modal_content.innerHTML = `
-            <div class="modal-body">
-                ${currentUser.first_name}, you're right.<br>
-                Will reciave:<br>
-                -> ${exercise_point_repeated} points<br>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Next</button>
-            </div>
-        `
+    } else {
+        consoleView.innerHTML += `<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;${currentUser.first_name}, you're right.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;Will reciave:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;-> ${exercise_point_repeated} points<br><br>
+        C:\\Users\\${currentUser.first_name}>`
+        currentUser.point += exercise_point_repeated
+
         if (!exercisesInLesson[currentExercise.id]) {
             modal_content.querySelector('.modal-body').innerHTML += `
                 (finish lesson)
-            `
+                `
             modal_content.querySelector('button').innerHTML = `Finish`
             modal_content.querySelector('button').addEventListener('click', () => {
-                window.location.href = "index.html"
+                window.location.href = "../index.html"
             })
         }
-        modal_content.querySelector('button').addEventListener('click', () => {
-            currentExercise = exercisesInLesson.find(exercise => exercise.id == currentExercise.id + 1)
-            console.log(currentExercise);
-            templateExercise()
-        })
+
     }
+    currentExercise = exercisesInLesson.find(exercise => exercise.id == currentExercise.id + 1)
+    User.attUserOnStorage(currentUser)
+    localStorage.setItem('currentUser', JSON.stringify(currentUser))
+    consoleView.scrollTop = consoleView.scrollHeight
+    templateExercise()
 }
 function wrongAnswer() {
     const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')

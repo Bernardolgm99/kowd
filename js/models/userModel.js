@@ -49,8 +49,6 @@ export function login(email, password){
 export function attUserOnStorage(attUser){
     let users = JSON.parse(localStorage.getItem('users'))
     users.forEach((user,i) => {
-        console.log(user.id === attUser.id);
-        console.log(user.id, attUser.id);
         if (user.id === attUser.id) users[i] = attUser
     })
     localStorage.setItem('users', JSON.stringify(users))
