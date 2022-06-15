@@ -29,18 +29,18 @@ merchantLines(0)
 renderShop()
 function renderShop() {
     let shop = document.querySelector('.shop')
-    //shop.innerHTML = ``
+    shop.innerHTML = ``
     if ((currentUser.bag).length > 0) {
         for (let itens of Item.itemArray) {
             find: {
                 for(let item of currentUser.bag){
                     if (item == itens.id) {
                         shop.innerHTML += `
-                            <div class="row shopItem mb-3" id="scrollspyHeading1">
-                                <img src="${itens.img}">
-                                <p id="txt-large">${itens.name}</p> 
-                                <p id="txt-small">${itens.description}</p>
-                                <button class="item sold" id="${itens.id}">SOLD!</button>     
+                            <div class="row shopItem mb-3">
+                                <div class="col-2"><img src="${itens.img}"></div>
+                                <div class="col-3"><p class="txt-large">${itens.name}</p></div>
+                                <div class="col-4"><p class="txt-small">${itens.description}</p></div>
+                                <div class="col-2"><button class="item sold txt-small" id="${itens.id}">SOLD!</button></div>     
                                 <div class="hr"></div>
                             </div>
                             `
@@ -49,11 +49,11 @@ function renderShop() {
                 }
                 console.log(itens.img)
                 shop.innerHTML += `
-                <div class="row shopItem mb-3" id="scrollspyHeading1">
-                    <img src="${itens.img}">
-                    <p id="txt-large">${itens.name}</p> 
-                    <p id="txt-small">${itens.description}</p>
-                    <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
+                <div class="row shopItem mb-3">
+                    <div class="col-2"><img src="${itens.img}"></div>
+                    <div class="col-3"><p class="txt-large">${itens.name}</p></div>
+                    <div class="col-4"><p class="txt-small">${itens.description}</p></div>
+                    <div class="col-2"><button class="item sold txt-small" id="${itens.id}">${itens.value} | Buy</button></div>
                     <div class="hr"></div>
                 </div>
                 `
@@ -64,11 +64,11 @@ function renderShop() {
     else {
         for (let itens of Item.itemArray) {
             shop.innerHTML += `
-                <div class="row shopItem mb-3" id="scrollspyHeading1">
-                    <img src="${itens.img}">
-                    <p id="txt-large">${itens.name}</p> 
-                    <p id="txt-small">${itens.description}</p>
-                    <button class="item" id="${itens.id}">${itens.value} | Buy</button>     
+                <div class="row shopItem mb-3">
+                    <div class="col-2"><img src="${itens.img}"></div>
+                    <div class="col-3"><p class="txt-large">${itens.name}</p></div>
+                    <div class="col-2"><p class="txt-small">${itens.description}</p></div>
+                    <div class="col-2"><button class="item sold txt-small" id="${itens.id}">${itens.value} | Buy</button></div>
                     <div class="hr"></div>
                 </div>
                 `
@@ -94,6 +94,7 @@ function renderBtn() {
                     (currentUser.bag).push(itemShop.id)
                     currentUser.point = currentUser.point - itemShop.value
                     merchantLines(3)
+                    
                     //update inlocalstorage UserBag
                 } else if((currentUser.bag.find(item => item == itemShop.id))) {
                     merchantLines(2)
@@ -108,6 +109,7 @@ function renderBtn() {
                 }
             }
             (currentUser.bag).sort()
+            localStorage.setItem('currentUser', JSON.stringify(currentUser))
             renderShop()
             renderPoints()
         })
