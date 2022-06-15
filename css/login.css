@@ -53,9 +53,7 @@ a:hover {
 }
 
 img {
-    
     height: 93vh;
-    
 }
 
 #showPw {
@@ -70,6 +68,7 @@ img {
     display: grid;
     gap: 10px;
     justify-content: flex-start;
+    align-content: center;
 }
 
 #divInputs {
