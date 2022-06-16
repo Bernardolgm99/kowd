@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
+body{
+    color: rgb(255, 255, 255);
+    display: table-footer-group;
+    font-family: 'IBM Plex Mono', monospace;
+    background-image: url('../media/img/perfilBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+.itensInputs {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 32px;
+}
+
+.btn {
+    color: white;
+    background-color: rgba(131, 16, 155, 1);
+    border-style: solid;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: white;
+    margin: auto;
+}
