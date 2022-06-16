@@ -81,6 +81,8 @@ img {
     color: #000000;
     border: 2px solid #FFFFFF;
     border-radius: 8px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
     /*     background-color: #FFFFFF; */
 }
 
@@ -92,6 +94,7 @@ img {
     animation-duration: 3s;
     animation-iteration-count: infinite;
     border: 2px solid #FFFFFF;
+    transform: scale(0.95);
 }
 
 /*TO NOT CHANGE TO THE BOOTSTRAP DEFAULT BUTTON */
