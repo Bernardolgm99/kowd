@@ -1,3 +1,5 @@
+import * as Comments from '../js/models/commentsModel.js';
+
 initdata()
 
 function initdata() {
