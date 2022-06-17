@@ -13,13 +13,12 @@ body{
 }
 
 .background {
-    
     display: flex;
     flex-direction: column;
 }
 
 .merchant {
-   /* max- */width: 238px;
+    width: 238px;
    height: auto; 
 }
 

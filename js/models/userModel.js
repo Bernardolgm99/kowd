@@ -1,5 +1,5 @@
-/* let usersData = JSON.parse(localStorage.users)
- */
+let usersData = JSON.parse(localStorage.users)
+ 
 //REGISTER USER
 export function register(first_name, last_name, email, password, confirm_password) {
     let newEmail = usersData.find(user => user.email == email)
