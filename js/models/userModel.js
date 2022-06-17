@@ -65,6 +65,7 @@ export default class User{
     bag = [0,0,0,0]
     level = 0
     point = 0
+    img= "../media/userIcon/user1.jpg"
     constructor(first_name,last_name, password, email, type){
         this.id = (
             usersData.length = 0 ? 1 : usersData[usersData.length - 1].id + 1)

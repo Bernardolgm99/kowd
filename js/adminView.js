@@ -116,24 +116,51 @@ document.querySelector('#typeExercise3').addEventListener('click', () => {
         const question = document.querySelector("#question").value
         const answer = document.querySelector("#answer").value
         exModel.createExerciseType3OnStorage(text_exercise, answer, lesson, question)
-    })  
+    })
 })
 
 /*Comment.createCommentOnStorage(1,"Bernardo Lage","Bom dia!!!")
 Comment.createCommentOnStorage(2,"Bernardo Lage","Bom dia!!!")
 Comment.createCommentOnStorage(3,"Bernardo Lage","Bom dia!!!") */
 
-
+document.querySelector('#time-stamp-submit').addEventListener('click', () => {
+    const qtyTimeStamp = document.querySelector('#time-stamp-quantity').value
+    let div_insert = document.querySelector('#insert-time-stamp')
+    div_insert.innerHTML = `The tructure of the time should be splited for ":"<br>Example:<br>-> 1:32:22<br>-> 12:20`
+    for (let i = 0; i < qtyTimeStamp; i++) {
+        div_insert.innerHTML += `
+        <div class="input-group mb-1 timeStamp">
+            <span class="input-group-text">Timestamp ${i + 1}</span>
+            <span class="input-group-text">Title</span>
+            <input id="time-stamp${i}" type="input" class="form-control title-value">
+            <span class="input-group-text">Time</span>
+            <input id="time-stamp${i}" type="input" class="form-control time-value">
+        </div>
+        `
+    }
+})
 document.querySelector("#createLesson").addEventListener('click', () => {
     const nameModule = document.querySelector('#btn_module').innerHTML
     const nameLesson = document.querySelector('#input_lesson').value
     const urlLesson = document.querySelector('#input_url').value
     const description = document.querySelector('#description').value
-
+    const timeStampsList = document.querySelectorAll('.timeStamp')
+    let timeStamps = []
+    if(timeStampsList.length > 0){
+        timeStampsList.forEach(timeStamp => {
+            let infoTimeStamp = []
+            console.log(timeStamp);
+            infoTimeStamp.push(timeStamp.querySelector('.title-value').value)
+            infoTimeStamp.push(timeStamp.querySelector('.time-value').value)
+            console.log("bom dia", infoTimeStamp);
+            timeStamps.push(infoTimeStamp)
+        })
+    }
+    console.log(timeStamps);
 
     if (nameModule != "Module") {
         if (nameLesson != "") {
-            if (urlLesson != "") Lesson.createLessonOnStorage(nameModule, nameLesson, urlLesson, description)
+            if (urlLesson != "") Lesson.createLessonOnStorage(nameModule, nameLesson, urlLesson, description, timeStamps)
             else alert("Please select a video")
         }
         else alert("Please type a title")

@@ -31,6 +31,7 @@
 
 .video-player {
     width: 100%;
+    max-width: 800px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -40,8 +41,9 @@
 .timer-slider-text {
     position: absolute;
     bottom:40px;
-    font-size:10px;
+    font-size:15px;
     color: #fff;
+    text-shadow: 0px 0px 5px #000, 0px 0px 5px #000;
 }
 
 .controler {

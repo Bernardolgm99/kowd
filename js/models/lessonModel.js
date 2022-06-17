@@ -1,7 +1,7 @@
-export function createLessonOnStorage(nameModule,nameLesson, urlLesson, description) {
+export function createLessonOnStorage(nameModule, nameLesson, urlLesson, description, timestamps = []) {
     let lessons = []
     let idLesson = 1
-    
+
     // get modules in localStorage and get the Id
     /* if don't have a module in localStorage yet, will do a error*/
     let modules = JSON.parse(localStorage.getItem('modules'))
@@ -13,30 +13,52 @@ export function createLessonOnStorage(nameModule,nameLesson, urlLesson, descript
         idLesson = lessons[lessons.length - 1].id + 1
     }
 
+
+    // tranforme timestamps to seconds
+    console.log(timestamps);
+    if (timestamps.length != 0) {
+        timestamps.forEach((timestamp, i) => {
+            let timestamp_att = 0
+            timestamp[1].split(':').forEach((time, j, times) => {
+                timestamp_att += time * (Math.pow(60, (times.length - j - 1)))
+            })
+            timestamps[i][1] = timestamp_att
+        })
+    }
+    console.log(timestamps);
+    console.log(idModule, modules, lessons);
+
     // verify if lesson exist, if doesn't exist, create a new Lesson and append on lessons
-    if(!lessons.filter(lesson => {if (lesson.name == nameLesson) return true; else return false}).length) lessons.push(new Lesson(idLesson, nameLesson, urlLesson, idModule, description))
+    if (!lessons.filter(lesson => { if (lesson.name == nameLesson) return true; else return false }).length) lessons.push(new Lesson(idLesson, nameLesson, urlLesson, idModule, description, timestamps))
 
     // storage the list of lessons again
     localStorage.setItem("lessons", JSON.stringify(lessons))
-    
-    // do a reload on page but i don't remeber why. (but is important i think)
+
     location.reload();
 }
 
+export function attLesson(currentLesson) {
+    let lessons = JSON.parse(localStorage.getItem("lessons"))
+    lessons[lessons.findIndex(lesson => lesson.id === currentLesson.id)] = currentLesson
+    localStorage.setItem("lessons", JSON.stringify(lessons))
+    localStorage.setItem("currentLesson", JSON.stringify(currentLesson))
+    return currentLesson
+}
 
 class Lesson {
     id = 0
     name = ''
     url = ''
-    popularity = 0
+    popularity = [[], []] // like/dislike
     idModule = 0
     description = ''
-
-    constructor(id,name,url,idModule,description) {
+    timestamps = ['', 0]
+    constructor(id, name, url, idModule, description, timestamps) {
         this.id = id;
         this.name = name;
         this.url = url;
         this.idModule = idModule;
         this.description = description;
+        this.timestamps = timestamps;
     }
 }
