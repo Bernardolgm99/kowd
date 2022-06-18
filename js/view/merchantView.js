@@ -28,7 +28,7 @@ merchantLines(0)
 renderShop()
 function renderShop() {
     let shop = document.querySelector('.shop')
-    //shop.innerHTML = ``
+    shop.innerHTML = ``
     if ((currentUser.bag).length > 0) {
         for (let itens of Item.itemArray) {
             find: {
