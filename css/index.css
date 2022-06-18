@@ -1,0 +1,68 @@
+.img-about {
+    width: 100% !important;
+}
+
+@media (min-width: 100px) {
+    .order-sm-2 {
+        order: 2 !important;
+    }
+}
+
+.spacing {
+    width: 50%;
+    margin: 0 auto;
+    background: linear-gradient(90deg, #83109b, #38f8da);
+    border-radius: 50px;
+    height: 10px;
+}
+
+.our-client img {
+    border-radius: 50%;
+}
+
+.testimonials .card-landingpage {
+    background-color: #fff;
+    width: 340px;
+    height: 360px;
+    border-radius: 8px;
+    margin-top: 120px !important;
+}
+
+.testimonials img {
+    border-radius: 50%;
+    border: 10px solid #fff;
+    width: 180px;
+}
+
+.testimonials p {
+    color: black;
+    padding: 0px 0px
+}
+
+.name {
+    color: orange
+}
+
+.prices {
+    width: 340px;
+    background-color: #222;
+    border-radius: 8px
+}
+
+.prices h3 {
+    font-size: 40px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.prices span {
+    font-size: 100px;
+    text-align: center;
+}
+
+.prices button {
+    margin-top: 30px;
+    height: 80px;
+    font-size: 25px;
+    border-radius: 0px 0px 8px 8px
+}
