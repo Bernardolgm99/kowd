@@ -52,8 +52,19 @@ a:hover {
     50% {background-color: #D368EB}
 }
 
-img {
-    height: 93vh;
+#imgDiv {
+    background-image: url('/media/gifs/1_6YcHHARJDE83cKCkGL0KRg.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+@media (max-width: 992px){
+    #imgDiv {
+        position:absolute;
+        z-index: -1;
+    }
 }
 
 #showPw {
