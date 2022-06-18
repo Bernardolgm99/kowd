@@ -3,27 +3,21 @@
 
 body{
     color: rgb(255, 255, 255);
-    display: table-footer-group;
     font-family: 'IBM Plex Mono', monospace;
     background-image: url('../media/img/merchantBackground.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    height: 100vh;
 }
 
-.background {
-    display: flex;
-    flex-direction: column;
-}
-
-.merchant {
-    width: 238px;
+/* .merchant {
+   width: 238px;
    height: auto; 
 }
 
 .shopHeader {
     max-width: 1060;
+    height: 20vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -65,15 +59,16 @@ body{
     margin-top: 3%;
     margin-left: 5%;
     margin-right: 5%;
-}
+} */
 
 .shop {
     max-width: 1060px;
-    max-height: 340px;
+    height: 65vh;
     position:absolute;
     right: 0;
     left: 0;
     bottom: 0;
+    margin: 0 auto;
     overflow: hidden !important;
     overflow-y: scroll !important;
 
