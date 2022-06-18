@@ -150,5 +150,10 @@ body {
     .container-scroll {
         height: 60vh;
     }
+}
 
+.btn-kowd {
+    background: linear-gradient(#C350DC, #0781BC);
+    color: #fff;
+    border: 0px;
 }

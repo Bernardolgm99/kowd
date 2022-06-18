@@ -1,16 +1,63 @@
-.img-about {
-    width: 100% !important;
-}
-
 @media (min-width: 100px) {
     .order-sm-2 {
         order: 2 !important;
     }
 }
 
+.home {
+    background-image: url(../media/img/homeBackground.png);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.our-clients {
+    background-image: url(../media/img/merchantBackground.png);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.pricing {
+    background-image: url(../media/img/perfilBackground.png);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.home img {
+    width: 100%;
+}
+
+h1.type-writer {
+    font-size: 80px;
+}
+
+h1.type-writer::after {
+    content: "|";
+    animation: pisca .7s infinite
+}
+
+@keyframes pisca {
+
+    0%,
+    100% {
+        opacity: 1
+    }
+
+    50% {
+        opacity: 0
+    }
+}
+
+.home p {
+    font-size:35px
+}
+
 .spacing {
     width: 50%;
     margin: 0 auto;
+    margin-bottom: 80px !important;
     background: linear-gradient(90deg, #83109b, #38f8da);
     border-radius: 50px;
     height: 10px;
@@ -65,4 +112,25 @@
     height: 80px;
     font-size: 25px;
     border-radius: 0px 0px 8px 8px
+}
+
+h2 {
+    font-size: 50px;
+}
+
+.about {
+    background-color: #151515;
+}
+
+.about p {
+    font-size: 30px
+}
+
+.about h2 {
+    font-size: 50px;
+    margin-bottom:30px;
+}
+
+.about img {
+    width: 90% !important;
 }
