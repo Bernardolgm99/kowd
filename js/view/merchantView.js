@@ -10,7 +10,6 @@ function renderPoints() {
 
 //merchantLines
 function merchantLines(value){
-    console.log(value)
     let merchantLinePlace = document.querySelector('.merchantLines')
     if (value == 0) {
         let linesArray = [`Hello ${currentUser.first_name}, you can take anything as long as you have enough coins.`,`I see that you are interesed in my wares`,`Welcome back ${currentUser.first_name}, I'm glad to see you well once more, please take anything you want.`]
@@ -29,7 +28,7 @@ merchantLines(0)
 renderShop()
 function renderShop() {
     let shop = document.querySelector('.shop')
-    shop.innerHTML = ``
+    //shop.innerHTML = ``
     if ((currentUser.bag).length > 0) {
         for (let itens of Item.itemArray) {
             find: {
