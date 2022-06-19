@@ -10,19 +10,22 @@
 </head>
 
 <body>
-    <section style="height: 100vh; position: relative;">
-        <div class="container">
-            <div class="row">
-                <div class="shopHeader mb-5 col-12">
-                    <img class="merchant" src="../media/img/merchant.png">
-                    <div class="merchantLines boxes"></div>
-                    <div class="points boxes"></div>
+    <section>
+        <div class="container shopHeader">
+            <div class="my-3 shopHeader-itens mb-5 row">
+                <div class="col-lg-9 col-sm-12">
+                    <div class="text-box">
+                        <img class="merchant position-absolute" src="../media/img/merchant.png">
+                        <div class="merchantLines position-relative">
+                            <!-- merchant lines -->
+                        </div>
+                    </div>
                 </div>
-                    
-                <div class="shop col-12"></div>
+                <div class="points col-lg-3 col-sm-12"><!-- how mucth points the user has --></div>
             </div>
-            
         </div>
+
+        <div class="shop col-12 container"><!-- items go here --></div>
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"

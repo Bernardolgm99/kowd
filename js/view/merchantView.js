@@ -28,7 +28,7 @@ merchantLines(0)
 renderShop()
 function renderShop() {
     let shop = document.querySelector('.shop')
-    //shop.innerHTML = ``
+    shop.innerHTML = ``
     if ((currentUser.bag).length > 0) {
         for (let itens of Item.itemArray) {
             find: {
@@ -36,12 +36,14 @@ function renderShop() {
                     if (item == itens.id) {
                         shop.innerHTML += `
                             <div class="row shopItem mb-3">
-                                <div class="col-2"><img src="${itens.img}"></div>
-                                <div class="col-3"><p class="txt-large">${itens.name}</p></div>
-                                <div class="col-4"><p class="txt-small">${itens.description}</p></div>
-                                <div class="col-2"><button class="item sold txt-small" id="${itens.id}">SOLD!</button></div>     
+                                <div class="col-2 img"><img src="${itens.img}"></div>
+                                <div class="col-7 d-flex flex-column txt">
+                                    <p class="txt-large">${itens.name}</p>
+                                    <p class="txt-small">${itens.description}</p>
+                                </div>
+                                <div class="col-3 butao"><button class="item sold txt-small" id="${itens.id}">SOLD!</button></div>     
+                                </div>
                                 <div class="hr"></div>
-                            </div>
                             `
                         break find
                     }
@@ -49,12 +51,14 @@ function renderShop() {
                 console.log(itens.img)
                 shop.innerHTML += `
                 <div class="row shopItem mb-3">
-                    <div class="col-2"><img src="${itens.img}"></div>
-                    <div class="col-3"><p class="txt-large">${itens.name}</p></div>
-                    <div class="col-4"><p class="txt-small">${itens.description}</p></div>
-                    <div class="col-2"><button class="item sold txt-small" id="${itens.id}">${itens.value} | Buy</button></div>
+                    <div class="col-2 img"><img src="${itens.img}"></div>
+                    <div class="col-7 d-flex flex-column txt">
+                        <p class="txt-large">${itens.name}</p>
+                        <p class="txt-small">${itens.description}</p>
+                    </div>
+                    <div class="col-3 butao"><button class="item sold txt-small" id="${itens.id}">${itens.value} | Buy</button></div>
+                    </div>
                     <div class="hr"></div>
-                </div>
                 `
             }
         }
@@ -64,12 +68,14 @@ function renderShop() {
         for (let itens of Item.itemArray) {
             shop.innerHTML += `
                 <div class="row shopItem mb-3">
-                    <div class="col-2"><img src="${itens.img}"></div>
-                    <div class="col-3"><p class="txt-large">${itens.name}</p></div>
-                    <div class="col-2"><p class="txt-small">${itens.description}</p></div>
-                    <div class="col-2"><button class="item sold txt-small" id="${itens.id}">${itens.value} | Buy</button></div>
+                    <div class="col-2 img"><img src="${itens.img}"></div>
+                    <div class="col-7 d-flex flex-column txt">
+                        <p class="txt-large">${itens.name}</p>
+                        <p class="txt-small">${itens.description}</p>
+                    </div>
+                    <div class="col-3 butao"><button class="item sold txt-small" id="${itens.id}">${itens.value} | Buy</button></div>
+                    </div>
                     <div class="hr"></div>
-                </div>
                 `
         }
 
