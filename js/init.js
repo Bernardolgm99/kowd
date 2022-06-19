@@ -66,6 +66,7 @@ function initdata() {
             bag: [2],
             level: 0,
             point: 500,
+            easteregg: [],
             img: "../media/userIcon/user1.jpg"
         }
         localStorage.setItem('currentUser', JSON.stringify(currentUser))

@@ -175,7 +175,7 @@ function rightAnswer() {
             consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-primary">Finished</button></div>`
             consoleView = document.querySelector('.console')
             consoleView.parentNode.querySelector('button').addEventListener('click', () => {
-                window.location.href = "../html/index.html"
+                window.location.href = "../html/tutorial.html"
             })
             currentUser.point += exercise_point_bonus
         }
@@ -199,7 +199,7 @@ function rightAnswer() {
             consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-primary">Finished</button></div>`
             consoleView = document.querySelector('.console')
             consoleView.parentNode.querySelector('button').addEventListener('click', () => {
-                window.location.href = "../html/index.html"
+                window.location.href = "../html/tutorial.html"
             })
             currentUser.point += exercise_point_repeated
         }
@@ -232,7 +232,7 @@ function wrongAnswer() {
 }
 
 // EasterEgg
-if (currentUser.easteregg.find(1)) {
+if (!currentUser.easteregg.find(egg => egg == 1)) {
     document.querySelector('.easteregg').addEventListener('click', () => {
         const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
         modal_content.innerHTML = `
@@ -249,6 +249,7 @@ if (currentUser.easteregg.find(1)) {
         currentUser.point += easteregg_point
         currentUser.easteregg.push(1)
         User.attUserOnStorage(currentUser)
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
         document.querySelector('.easteregg').remove()
     })
 } else {
