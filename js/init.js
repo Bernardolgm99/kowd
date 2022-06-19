@@ -15,7 +15,8 @@ function initdata() {
                 bag: [0, 0, 0, 0],
                 level: 0,
                 point: 0,
-                img: "../media/userIcon/user1.jpg"
+                img: "../media/userIcon/user1.jpg",
+                easteregg: []
             },
             {
                 id: 3,
@@ -28,7 +29,8 @@ function initdata() {
                 bag: [0, 0, 0, 0],
                 level: 0,
                 point: 0,
-                img: "../media/userIcon/user1.jpg"
+                img: "../media/userIcon/user1.jpg",
+                easteregg: []
             },
         ]
         localStorage.setItem('users', JSON.stringify(users))
@@ -132,7 +134,7 @@ function initdata() {
             },
             {
                 id: 2,
-                lessonId: 1,
+                lessonId: 3,
                 type: 2,
                 answer: "for",
                 question: `What's keyword is used to do a Loop?`,
