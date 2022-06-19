@@ -17,7 +17,7 @@ let duration = ""
 
 
 //Preload for take some informations
-window.addEventListener('loadeddata', function () {
+window.addEventListener('load', function () {
     timer.max = `${video.duration * 100}`
     duration = Math.trunc(video.duration / 60) < 10 ? (Math.trunc(video.duration % 60) < 10 ? `0${Math.trunc(video.duration / 60)}:0${Math.trunc(video.duration % 60)}` : `0${Math.trunc(video.duration / 60)}:${Math.trunc(video.duration % 60)}`) : (Math.trunc(video.duration % 60) < 10 ? `${Math.trunc(video.duration / 60)}:0${Math.trunc(video.duration % 60)}` : `${Math.trunc(video.duration / 60)}:${Math.trunc(video.duration % 60)}`)
     timer_text.innerHTML = `00:00/${duration}`
@@ -174,7 +174,6 @@ function textTimeline(e) {
     let mousePostion = e.pageX - video_div.offsetLeft;
     let percentDiv = mousePostion/ video_div.offsetWidth
     let seconds = video.duration * percentDiv
-    console.log(mousePostion, percentDiv, seconds);
     let att_timer_text = Math.trunc(seconds / 60) < 10 ? (Math.trunc(seconds % 60) < 10 ? `0${Math.trunc(seconds / 60)}:0${Math.trunc(seconds % 60)}` : `0${Math.trunc(seconds / 60)}:${Math.trunc(seconds % 60)}`) : (Math.trunc(seconds % 60) < 10 ? `${Math.trunc(seconds / 60)}:0${Math.trunc(seconds % 60)}` : `${Math.trunc(seconds / 60)}:${Math.trunc(seconds % 60)}`)
     timer_slider_text.innerHTML = `${att_timer_text}`
     timer_slider_text.style.left = mousePostion < (video_div.offsetWidth - 20) ?

@@ -94,10 +94,12 @@ function initdata() {
         let lessons = [{
             id: 1,
             name: 'so vim dizer yau',
-            url: '',
-            popularity: 2,
+            url: '../aula.mp4',
+            popularity: [[],[]],
             idModule: 1,
             description: 'yauyauyau',
+            timestamps: [['primeiro comi o cu de quem ta lendo', 100],['segundo batendo punheta com o pau no ventilador',200],['terceiro hoje tem festa lá no meu ap',300],['quarto dias tem uma semana',400]]
+
         }, {
             id: 2,
             name: 'so vim dizer yau',
@@ -119,6 +121,7 @@ function initdata() {
             popularity: 2,
             idModule: 3,
             description: 'yauyauyau',
+            
         }]
         localStorage.setItem('lessons', JSON.stringify(lessons))
         console.log('lessons data injected')
@@ -164,5 +167,23 @@ function initdata() {
         }
         localStorage.setItem('currentExercise', JSON.stringify(currentExercise))
         console.log('exerciseExercise data injected')
+    }
+
+    if (!localStorage.currentLesson) {
+        let currentLesson = {
+            id: 1,
+            name: 'so vim dizer yau',
+            url: '../aula.mp4',
+            popularity: 2,
+            idModule: 1,
+            description: 'yauyauyau',
+            timestamps: [['primeiro', 100],['segundo',200],['terceiro',300],['quarto',400]]
+        }
+        localStorage.setItem('currentLesson', JSON.stringify(currentLesson))
+        console.log('exerciseExercise data injected')
+    }
+    
+    if (!localStorage.comments) {
+
     }
 }
