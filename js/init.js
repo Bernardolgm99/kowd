@@ -15,7 +15,8 @@ function initdata() {
                 bag: [0, 0, 0, 0],
                 level: 0,
                 point: 0,
-                img: "../media/userIcon/user1.jpg"
+                img: "../media/userIcon/user1.jpg",
+                easteregg: []
             },
             {
                 id: 3,
@@ -28,7 +29,8 @@ function initdata() {
                 bag: [0, 0, 0, 0],
                 level: 0,
                 point: 0,
-                img: "../media/userIcon/user1.jpg"
+                img: "../media/userIcon/user1.jpg",
+                easteregg: []
             },
         ]
         localStorage.setItem('users', JSON.stringify(users))
@@ -66,6 +68,7 @@ function initdata() {
             bag: [2],
             level: 0,
             point: 500,
+            easteregg: [],
             img: "../media/userIcon/user1.jpg"
         }
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
@@ -91,10 +94,12 @@ function initdata() {
         let lessons = [{
             id: 1,
             name: 'so vim dizer yau',
-            url: '',
-            popularity: 2,
+            url: '../aula.mp4',
+            popularity: [[],[]],
             idModule: 1,
             description: 'yauyauyau',
+            timestamps: [['primeiro comi o cu de quem ta lendo', 100],['segundo batendo punheta com o pau no ventilador',200],['terceiro hoje tem festa lá no meu ap',300],['quarto dias tem uma semana',400]]
+
         }, {
             id: 2,
             name: 'so vim dizer yau',
@@ -116,6 +121,7 @@ function initdata() {
             popularity: 2,
             idModule: 3,
             description: 'yauyauyau',
+            
         }]
         localStorage.setItem('lessons', JSON.stringify(lessons))
         console.log('lessons data injected')
@@ -132,14 +138,14 @@ function initdata() {
             },
             {
                 id: 2,
-                lessonId: 1,
+                lessonId: 3,
                 type: 2,
                 answer: "for",
                 question: `What's keyword is used to do a Loop?`,
                 wrong_answers: ["loop", "For", "doUntil"]
             },
             {
-                id: 1,
+                id: 4,
                 lessonId: 1,
                 type: 3,
                 answer: "l,e,t,0,1,0,i",
@@ -161,5 +167,23 @@ function initdata() {
         }
         localStorage.setItem('currentExercise', JSON.stringify(currentExercise))
         console.log('exerciseExercise data injected')
+    }
+
+    if (!localStorage.currentLesson) {
+        let currentLesson = {
+            id: 1,
+            name: 'so vim dizer yau',
+            url: '../aula.mp4',
+            popularity: 2,
+            idModule: 1,
+            description: 'yauyauyau',
+            timestamps: [['primeiro', 100],['segundo',200],['terceiro',300],['quarto',400]]
+        }
+        localStorage.setItem('currentLesson', JSON.stringify(currentLesson))
+        console.log('exerciseExercise data injected')
+    }
+    
+    if (!localStorage.comments) {
+
     }
 }

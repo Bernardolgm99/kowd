@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Press+Start+2P&display=swap');
+
+body {
+    background: #000000;
+    font-family: 'Press Start 2P', cursive;
+}
+
+h1 {
+    color: #FFFFFF;
+}
+
+#boss {
+    display: grid;
+    flex-direction: row-reverse;
+    justify-content: end;
+    justify-items: end;
+}
+
+img {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#txtmessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 900px;
+    height: 200px;
+    border: 5px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+#txtTxtBox { 
+    color: white;
+}
+    
