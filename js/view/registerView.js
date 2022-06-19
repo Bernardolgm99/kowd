@@ -9,7 +9,6 @@ let confirm_pw = document.querySelector('#txtConfirmPw')
 //SHOW/HIDE THE PASSWORD 
 radioPw.addEventListener('click', () => {
 
-    console.log(radioPw.checked)
     if(radioPw.checked == true){
         pw.type = "text"
         confirm_pw.type = "text"
@@ -28,10 +27,17 @@ document.querySelector('#btnRegisterAcc').addEventListener('click', () => {
     let email = document.querySelector('#txtEmail').value
     let pwValue = pw.value
     let confirm_pwValue = confirm_pw.value
-
+    console.log(document.querySelector('#txtEmail').value)
+    
     try{
         User.register(first_name, last_name, email, pwValue, confirm_pwValue)
+        document.querySelector('#inform').innerHTML = `<div class="alert alert-success" role="alert">
+                                                            Your account has been created!
+                                                        </div>`
+        setTimeout(() => {window.location.href = "./login.html"},2000)
     } catch(error){
-        alert(error.message)
+        document.querySelector('#inform').innerHTML = `<div class="alert alert-danger" role="alert">
+                                                            ${error}
+                                                        </div>`
     }
 })

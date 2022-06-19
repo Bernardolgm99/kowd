@@ -6,7 +6,6 @@ let pw = document.querySelector('#txtPw')
 //SHOW/HIDE THE PASSWORD
 radioPw.addEventListener('click', () => {
 
-    console.log(radioPw.checked)
     if(radioPw.checked == true){
         pw.type = "text"
     } else {
@@ -22,8 +21,17 @@ document.querySelector('#btnLogInAcc').addEventListener('click', () => {
     let password = document.querySelector('#txtPw').value
 
     try{
-        User.login(email, password)
+        let validation = User.login(email, password)
+        if(validation){
+            document.querySelector('#inform').innerHTML = `<div class="alert alert-success" role="alert">
+                                                                Welcome back ${validation.first_name}!
+                                                            </div>`
+            setTimeout(() => {window.location.href = "./index.html"},1000)
+        }
     } catch(error){
-        alert(error.message)
+        document.querySelector('#inform').innerHTML = `<div class="alert alert-danger" role="alert">
+                                                            ${error}
+                                                        </div>`
+
     }
 })

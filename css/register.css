@@ -51,10 +51,30 @@ label {
     height: 100vh;
 }
 
+#kowdA {
+    margin-top: 10px;
+}
+
 @media (max-width: 992px){
     #imgDiv {
         position:absolute;
         z-index: -1;
+    }
+
+    #divInputs {
+        margin-top: 200px !important;
+    }
+
+    #kowdA {
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    a>img {
+        width: 175px;
+        margin-bottom: 10vh;
     }
 }
 
@@ -66,10 +86,6 @@ a {
 a:hover {
     text-decoration: underline;
     color: #c4c4c4;
-}
-
-img {
-    height: 93vh;
 }
 
 @keyframes blink {

@@ -1,5 +1,3 @@
-import * as Comments from '../js/models/commentsModel.js';
-
 initdata()
 
 function initdata() {
@@ -15,7 +13,8 @@ function initdata() {
              currentExercise: 0,
              bag: [0,0,0,0],
              level: 0,
-             point: 0
+             point: 0,
+             img: "../media/userIcon/user1.jpg"
              }, 
              {id: 3,
               first_name: 'Piruka',
@@ -26,7 +25,8 @@ function initdata() {
               currentExercise: 0,
               bag: [0,0,0,0],
               level: 0,
-              point: 0
+              point: 0,
+              img: "../media/userIcon/user1.jpg"
             },
         ]
         localStorage.setItem('users', JSON.stringify(users))
