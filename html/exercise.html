@@ -12,16 +12,29 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <img src="/media/img/icon.png" alt="" width="30" height="30">
-            </a>
-            <form class="d-flex">
-                <button class="btn btn-success" type="button">Log In</button>
-            </form>
-        </div>
-    </nav>
+    <section id="navigation">
+        <nav class="navbar">
+            <div class="container">
+                <a class="my-1" href="#">
+                    <img src="/media/img/icon.png">
+                </a>
+                <div class="d-flex justify-content-evenly flex-grow-1 menu-desktop">
+                    <a class="nav-link p-2 nav-link-desktop nav-link-hover" href="userHome.html">Home</a>
+                    <a class="nav-link p-2 nav-link-desktop nav-link-hover" href="tutorial.html">Tutorial</a>
+                    <a class="nav-link p-2 nav-link-desktop nav-link-hover" href="merchant.html">Store</a>
+                    <a class="nav-link p-2 nav-link-desktop nav-link-hover" href="faq.html">F.A.Q.</a>
+                    <a class="nav-link p-2 nav-link-desktop nav-link-hover" href="aboutUs.html">About Us</a>
+                </div>
+                <button type="button" class="navbar-btn material-symbols-outlined">menu</button>
+                <a href="perfilSettings.html">
+                    <img src="/media/userIcon/user1.jpg" class="userIcon">
+                </a>
+            </div>
+            </div>
+            <div id="menu-mobile" class="container-fluid">
+            </div>
+        </nav>
+    </section>
 
     <button class="easteregg btn" data-bs-toggle="modal" data-bs-target="#modalAnswer">UwU</button>
 
@@ -61,7 +74,8 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <script type="module" src="../js/view/exView.js"></script>
-   <!--  <script type="text/javascript" src="../js/init.js"></script> -->
+    <script type="text/javascript" src="/js/base.js"></script>
+    <script type="text/javascript" src="/js/init.js"></script>
 </body>
 
 </html>

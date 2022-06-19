@@ -60,10 +60,11 @@ export default class User{
     password = ''
     email = ''
     type = 0 //(0 - user) (1 - admin)
-    exercises_finished = 0
+    currentExercise = 0
     bag = [0,0,0,0]
     level = 0
     point = 0
+    easteregg = []
     img= "../media/userIcon/user1.jpg"
     constructor(first_name, last_name, password, email, type = 0){
         this.id = (

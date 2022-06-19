@@ -1,40 +1,29 @@
 import * as User from "../models/userModel.js"
 
-/* localStorage.setItem("currentUser", JSON.stringify({
-    bag: [2],
-    email: "johndoe@example.com",
-    exercises_finished: 0,
-    first_name: "John",
-    id: 2,
-    last_name: "Doe",
-    level: 0,
-    password: "1234",
-    point: 1870,
-    type: 0
-})) */
-
+// Style for console
 function getRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
 }
-
 function getRandomColor() {
     let color = getRandomNumber(0, 359)
     return `hsl(${color},100%,50%)`
 }
 
-
+// Management point gains in exercises
 const exercise_point = 100
 const exercise_point_bonus = 1000
 const exercise_point_repeated = 10
-let exerciseId = JSON.parse(localStorage.getItem('currentExercise')).id
-let lessonId = JSON.parse(localStorage.getItem('currentLesson')).id
+const easteregg_point = 100
+
+
+let currentExercise = JSON.parse(localStorage.getItem('currentExercise'))
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
-let exercisesInLesson = JSON.parse(localStorage.getItem('exercises')).filter(exercise => exercise.lessonId == lessonId)
+let lessonId = currentUser.lessonId
+let exercisesInLesson = JSON.parse(localStorage.getItem('exercises')).filter(exercise => exercise.lessonId == currentExercise.lessonId)
 
 let consoleView = document.querySelector('.console')
 
 const div = document.querySelector('.exercise')
-let currentExercise = exercisesInLesson.find(exercise => exercise.id === exerciseId)
 const exercises = JSON.parse(localStorage.getItem('exercises'))
 
 
@@ -159,8 +148,12 @@ function templateExercise() {
 
 /* Need to create a catch error (probably) when the "exercisesInLesson[currentExercise.id]" is out of range */
 function rightAnswer() {
+    console.log(currentExercise);
     const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
-    if (currentUser.exercises_finished < currentExercise.id) {
+
+    console.log(currentUser.currentExercise, currentExercise.id);
+    // if the user are did this exercise
+    if (currentUser.currentExercise < currentExercise.id) {
         if (exercisesInLesson[currentExercise.id]) {
             consoleView.querySelector('p').innerHTML += `<br><br><span style="color: ${getRandomColor()}">
             &nbsp;&nbsp;&nbsp;&nbsp;${currentUser.first_name}, you're right.<br>
@@ -168,6 +161,7 @@ function rightAnswer() {
             &nbsp;&nbsp;&nbsp;&nbsp;-> ${exercise_point} points<br>
             &nbsp;&nbsp;&nbsp;&nbsp;-> Unlock exercise ${currentExercise.id + 1}</span><br><br>
             C:\\Users\\${currentUser.first_name}>`
+            console.log(currentExercise);
         } else {
             consoleView.querySelector('p').innerHTML += `<br><br><span class="rainbow">
             &nbsp;&nbsp;&nbsp;&nbsp;${currentUser.first_name}, you're right.<br>
@@ -181,11 +175,11 @@ function rightAnswer() {
             consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-primary">Finished</button></div>`
             consoleView = document.querySelector('.console')
             consoleView.parentNode.querySelector('button').addEventListener('click', () => {
-                window.location.href = "../index.html"
+                window.location.href = "../html/index.html"
             })
             currentUser.point += exercise_point_bonus
         }
-        currentUser.exercises_finished = currentExercise.id
+        currentUser.currentExercise = currentExercise.id
         currentUser.point += exercise_point
     } else {
         if (exercisesInLesson[currentExercise.id]) {
@@ -202,16 +196,20 @@ function rightAnswer() {
             &nbsp;&nbsp;&nbsp;&nbsp;-> ${exercise_point_repeated} points<br>
             &nbsp;&nbsp;&nbsp;&nbsp;(finish lesson)</span><br><br>
             C:\\Users\\${currentUser.first_name}>`
-            console.log(2);
             consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-primary">Finished</button></div>`
             consoleView = document.querySelector('.console')
             consoleView.parentNode.querySelector('button').addEventListener('click', () => {
-                window.location.href = "../index.html"
+                window.location.href = "../html/index.html"
             })
+            currentUser.point += exercise_point_repeated
         }
     }
-    currentExercise = exercisesInLesson.find(exercise => exercise.id == currentExercise.id + 1)
+    console.log(currentExercise, exercisesInLesson);
+    currentExercise = exercisesInLesson[exercisesInLesson.findIndex(exercise => exercise.id == currentExercise.id) + 1]
+    console.log("wuw", currentUser);
+    console.log(JSON.parse(localStorage.users))
     User.attUserOnStorage(currentUser)
+    console.log(JSON.parse(localStorage.users))
     localStorage.setItem('currentUser', JSON.stringify(currentUser))
     consoleView.scrollTop = consoleView.scrollHeight
     templateExercise()
@@ -229,28 +227,33 @@ function wrongAnswer() {
         </div>
     `
     document.querySelector('#go-study').addEventListener('click', () => {
-        window.location.href = "../lesson.html"
+        window.location.href = "../html/lesson.html"
     })
 }
 
 // EasterEgg
-
-document.querySelector('.easteregg').addEventListener('click', () => {
-    const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
-    modal_content.innerHTML = `
-        <div class="modal-body">
-            ${currentUser.first_name}, what are u doing???.<br>
-            Ok ok, take this points!!!<br>
-            Will reciave:<br>
-            -> ${exercise_point_repeated} points<br>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary rainbow-bg" data-bs-dismiss="modal">Bye bye UwU</button>
-        </div>
-    `
-/*     document.querySelector('.easteregg').remove()
- */})
+if (currentUser.easteregg.find(1)) {
+    document.querySelector('.easteregg').addEventListener('click', () => {
+        const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
+        modal_content.innerHTML = `
+            <div class="modal-body">
+                ${currentUser.first_name}, what are u doing???.<br>
+                Ok ok, take this points!!!<br>
+                Will reciave:<br>
+                -> ${exercise_point_repeated} points<br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rainbow-bg" data-bs-dismiss="modal">Bye bye UwU</button>
+            </div>
+        `
+        currentUser.point += easteregg_point
+        currentUser.easteregg.push(1)
+        User.attUserOnStorage(currentUser)
+        document.querySelector('.easteregg').remove()
+    })
+} else {
+    document.querySelector('.easteregg').remove()
+}
 
 // EasterEgg 2
-
-console.log('Are u retarded???\nGet out of here and go study, STUPID!!!')
+console.log(`Ricardo, there isn't any bugs for you here\nIf you're not Ricardo, there isn't any bugs for you here either`)
