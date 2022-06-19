@@ -1,0 +1,93 @@
+*,*::before,*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: 0;
+}
+
+body {
+    font-family: 'IBM Plex Mono', monospace;
+    background-image: url('../media/img/homeBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 80rem;
+    margin: auto;
+    padding: 0 1.5rem;
+}
+
+.accordion-item {
+    background-color: rgba(255, 210, 188, 0.4);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 100%;
+}
+
+.accordion-link {
+    font-size: 1.6rem;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+.accordion-link:hover{
+    color: white;
+}
+
+.accordion-link i {
+    padding: .5rem;
+}
+
+.accordion-link .ion-md-arrow-dropup{
+    display: none;
+}
+
+.anser {
+    max-height: 0;
+    overflow: hidden;
+    position: relative;
+    background-color: rgba(232, 77, 0, 0.2);
+    transition: max-height 300ms;
+}
+
+.anser::before{
+    content: "";
+    position: absolute;
+    width: .6rem;
+    height: 90%;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.anser p {
+    font-size: 1.4rem;
+    color: rgb(255, 255, 255,.8);
+    padding: 2rem;
+}
+.accordion-item:target .anser{
+    max-height: 20rem;
+}
+
+.accordion-item:target .accordion-link .ion-md-arrow-dropdown{
+    display: none;
+}
+
+.accordion-item:target .accordion-link .ion-md-arrow-dropup{
+    display: block;
+}

@@ -1,4 +1,5 @@
 import * as Item from "../models/itemsModel.js"
+
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 if (!(localStorage.getItem('currentUser'))) window.location.href = "../../html/login.html"
 //console.log(currentUser)
