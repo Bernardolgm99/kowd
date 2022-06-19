@@ -20,7 +20,7 @@ function merchantLines(value){
     } else if(value == 2){
         merchantLinePlace.innerHTML = `<p>Come on... You already have that item in the bag, didn't you notice?</p>`
     } else {
-        merchantLinePlace.innerHTML = `<p>What a great purchase you made today, buy anything that you what</p>`
+        merchantLinePlace.innerHTML = `<p>What a great purchase you made today, buy anything that you want</p>`
     }
 
 }

@@ -1,0 +1,35 @@
+body{
+    color: rgb(255, 255, 255);
+    font-family: 'IBM Plex Mono', monospace;
+    background-image: url('../media/img/homeBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+img{
+    width: 90%;
+}
+
+.itens-texto{
+    margin-top: 20vh;
+    text-align: center !important;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.card{
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 18rem;
+    text-align: center;
+    margin: 0 1rem;
+    border-radius: 20px;
+}
+
+.container-info{
+    display: flex;
+    justify-content: center !important;
+}
+
+.card .material-symbols-outlined {
+  font-size: 100px;
+}
