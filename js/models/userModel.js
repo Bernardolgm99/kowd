@@ -53,6 +53,14 @@ export function attUserOnStorage(attUser){
     localStorage.setItem('users', JSON.stringify(users))
 }
 
+export function removeUserOnStorage(deleteUser){
+    console.log(deleteUser)
+    let users = JSON.parse(localStorage.getItem('users'))
+    console.log(users.findIndex(user => user.id == deleteUser.id));
+    users.splice(users.findIndex(user => user.id == deleteUser.id),1)
+    localStorage.setItem('users', JSON.stringify(users))
+}
+
 export default class User{
     id = 0
     first_name = ''

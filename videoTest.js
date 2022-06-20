@@ -188,8 +188,7 @@ function textTimelineHide() {
 // Keyboard Functions
 document.addEventListener('keydown', e => {
     const tag_name = document.activeElement.tagName.toLowerCase()
-    console.log(e.key);
-    if (tag_name === 'input') return
+    if (tag_name === 'textarea' || tag_name === 'input') return
 
     switch (e.key.toLowerCase()) {
         case " ":

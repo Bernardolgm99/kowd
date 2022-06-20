@@ -217,3 +217,22 @@ body {
     color: #fff;
     border: 0px;
 }
+
+.btn-kowd-secondary {
+    background: transparent;
+    color: #bbb;
+    border: 0px;
+}
+
+.btn-big {
+    height:80px;
+    width: 300px;
+    font-size: 30px;
+    border-radius: 50px
+}
+
+.btn-orange {
+    background: #9e3313;
+    border:3px solid #eee ;
+    color: #eee;
+}

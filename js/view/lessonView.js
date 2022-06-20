@@ -49,14 +49,12 @@ function timeAgo(time) {
 document.querySelector('#title').innerHTML = `${currentLesson.name}`
 document.querySelector('#description').innerHTML = `Description:<br><br>${currentLesson.description}`
 
-console.log(currentLesson);
-console.log(currentLesson.timestamps);
 currentLesson.timestamps.forEach(timestamp => {
     document.querySelector('#timestamp').innerHTML += `
     <div class="d-flex py-3 clickable" value="${timestamp[1]}">
         <canvas class="timestamp-screen m-auto"></canvas>
         <div class="flex-grow-1 d-flex flex-column justify-content-center ps-3">
-            <span class="timestamp-title fs-6">${timestamp[0].length > 30 ? `${timestamp[0].substr(0, 30).trim()}...` : timestamp[0]}</span>
+            <span class="timestamp-title fs-6">${timestamp[0].length > 40 ? `${timestamp[0].substr(0, 40).trim()}...` : timestamp[0]}</span>
             <span class="timestamp-time fs-6">${Math.trunc(timestamp[1] / 60) < 10 ? (Math.trunc(timestamp[1] % 60) < 10 ? `0${Math.trunc(timestamp[1] / 60)}:0${Math.trunc(timestamp[1] % 60)}` : `0${Math.trunc(timestamp[1] / 60)}:${Math.trunc(timestamp[1] % 60)}`) : (Math.trunc(timestamp[1] % 60) < 10 ? `${Math.trunc(timestamp[1] / 60)}:0${Math.trunc(timestamp[1] % 60)}` : `${Math.trunc(timestamp[1] / 60)}:${Math.trunc(timestamp[1] % 60)}`)}</span>
         </div>
     </div>
