@@ -34,6 +34,7 @@ window.onmouseup = () => {
 
 // Update color while playing
 video.ontimeupdate = () => {
+    if (video.currentTime == video.duration) document.querySelector('.overlay-end').style.display = 'block'
     let x = parseFloat((video.currentTime * 100 / video.duration))
     let color = `linear-gradient(90deg, rgba(255, 136, 0, 1) ${x}%, rgba(0, 0, 0, 0.6) ${x}%)`
     timer.style.background = color

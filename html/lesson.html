@@ -15,10 +15,11 @@
 </head>
 
 <body>
+    <div class="overlay-end"><div class="modal-kowd"><button class="go_exercise">Go to Exercises</button><button class="hide_element">Keep Here</button></div></div>
     <section class="video-player">
         <div class="container">
             <div class="row">
-                <div class="col-lg-9 col-sm-12">
+                <div class="col-xl-8 col-lg-12">
                     <div id="videoDiv" class="video-player my-3">
                         <video id="video" class="video w-100">
                             <source src="../media/video/aula.mp4" type="video/mp4">
@@ -50,7 +51,7 @@
                     </div>
 
                 </div>
-                <div id="timestamp" class="col-lg-3 col-sm-12 mb-3 d-flex flex-column container-scroll">
+                <div id="timestamp" class="col-xl-4 col-lg-12 mb-3 d-flex flex-column container-scroll align-middle">
                 </div>
                 <div id="description" class="col-12"><!-- Description --></div>
             </div>
@@ -60,7 +61,7 @@
         <div class="container insert-comment d-flex my-3 justify-content-center mt-5 input-group">
             <img id="img-user" src="../media/userIcon/user1.jpg"  style="width:80px; border-radius:50%;">
             <textarea id="input-comment" type="textbox" class="form-control ms-3" placeholder="Comments"></textarea>
-            <button id="send-comment" class="btn btn-primary" style="z-index: -1">Send</button>
+            <button id="send-comment" class="btn btn-primary" style="z-index: 0">Send</button>
         </div>
         <div class="container mt-5">
             <div class="row justify-content-center comments">
@@ -81,8 +82,8 @@
         crossorigin="anonymous"></script>
     <script type="module" src="../js/init.js"></script>
     <script type="module" src="../js/view/lessonView.js"></script>
-    <script type="module" src="../videoTest.js"></script>
     <script type="module" src="../js/base.js"></script>
+    <script type="module" src="../videoTest.js"></script>
 </body>
 
 </html>

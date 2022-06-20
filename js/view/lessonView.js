@@ -4,17 +4,17 @@ import * as Lesson from "../models/lessonModel.js"
 let currentLesson = JSON.parse(localStorage.getItem('currentLesson'))
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 
-/* Comments.createCommentOnStorage(10, 'ahh_theuser','bernardo é foda')
-Comments.createCommentOnStorage(10, 'niggaMen','COMO?')
-Comments.createCommentOnStorage(20, 'PILAS','OLA OVELINHAS')
-Comments.createCommentOnStorage(10, 'pernas_sao_fixes','VA EU DIGO KINDER VOCES DIZEM BUENO, KINDER ... KINDER ... KinDeR? vai te fuder...')
-Comments.createCommentOnStorage(20, 'ahh_theuser','Uwu')
-Comments.createCommentOnStorage(10, 'alves=tomHoland','DAs Me DiNHEiRo!? e um beijo? (,,0o0,,)') */
+/* Comments.createCommentOnStorage(1, 'ahh_theuser','../media/userIcon/user1.jpg','bernardo é foda')
+Comments.createCommentOnStorage(1, 'niggaMen','../media/userIcon/user1.jpg','COMO?')
+Comments.createCommentOnStorage(2, 'PILAS','../media/userIcon/user1.jpg','OLA OVELINHAS')
+Comments.createCommentOnStorage(1, 'pernas_sao_fixes','../media/userIcon/user1.jpg','VA EU DIGO KINDER VOCES DIZEM BUENO, KINDER ... KINDER ... KinDeR? vai te fuder...')
+Comments.createCommentOnStorage(2, 'ahh_theuser','../media/userIcon/user1.jpg','Uwu')
+Comments.createCommentOnStorage(1, 'alves=tomHoland','../media/userIcon/user1.jpg','DAs Me DiNHEiRo!? e um beijo? (,,0o0,,)') */
 let comments = JSON.parse(localStorage.getItem('comments')).filter(comment => comment.idLessonReference === currentLesson.id)
 comments.forEach(comment => {
     document.querySelector('#comments-list').querySelector('.comments').innerHTML += `
     <div class="d-flex my-3 justify-content-center" style="padding:0px">
-        <div class="px-2"><img src="${comment.img}" style="width:80px; border-radius:50%;"></div>
+        <div class="px-2"><img src="${comment.imgUser}" style="width:80px; border-radius:50%;"></div>
         <div class="w-100 px-3 row" style="padding:0px">
             <div class="col-12 mb-2"><span class="user-name" style="color:${getRandomColor()}; font-weight:bold;">${comment.userName}</span> &nbsp;<span class="time-ago" style="color: #888">${timeAgo(comment.date)}</span></div>
             <div class="h-100 col-12">${comment.comment}</div>
@@ -54,9 +54,9 @@ console.log(currentLesson.timestamps);
 currentLesson.timestamps.forEach(timestamp => {
     document.querySelector('#timestamp').innerHTML += `
     <div class="d-flex py-3 clickable" value="${timestamp[1]}">
-        <canvas class="timestamp-screen"></canvas>
-        <div class="d-flex flex-column justify-content-center ps-3">
-            <span class="timestamp-title fs-6">${timestamp[0].length > 17 ? `${timestamp[0].substr(0, 25).trim()}...` : timestamp[0]}</span>
+        <canvas class="timestamp-screen m-auto"></canvas>
+        <div class="flex-grow-1 d-flex flex-column justify-content-center ps-3">
+            <span class="timestamp-title fs-6">${timestamp[0].length > 30 ? `${timestamp[0].substr(0, 30).trim()}...` : timestamp[0]}</span>
             <span class="timestamp-time fs-6">${Math.trunc(timestamp[1] / 60) < 10 ? (Math.trunc(timestamp[1] % 60) < 10 ? `0${Math.trunc(timestamp[1] / 60)}:0${Math.trunc(timestamp[1] % 60)}` : `0${Math.trunc(timestamp[1] / 60)}:${Math.trunc(timestamp[1] % 60)}`) : (Math.trunc(timestamp[1] % 60) < 10 ? `${Math.trunc(timestamp[1] / 60)}:0${Math.trunc(timestamp[1] % 60)}` : `${Math.trunc(timestamp[1] / 60)}:${Math.trunc(timestamp[1] % 60)}`)}</span>
         </div>
     </div>
@@ -70,8 +70,8 @@ document.querySelector('#timestamp').querySelectorAll('.clickable').forEach((tim
 })
 //
 // Functions to do likes and dislikes
-document.querySelector('#like').style.color = currentLesson.popularity[0].find(like => like == currentUser.id) ? '#0f0' : "#fff"
-document.querySelector('#dislike').style.color = currentLesson.popularity[1].find(dislike => dislike == currentUser.id) ? '#f00' : "#fff"
+document.querySelector('#like').style.color = currentLesson.popularity[0].find(like => like == currentUser.id) ? 'rgba(49, 135, 77, 1)' : "#fff"
+document.querySelector('#dislike').style.color = currentLesson.popularity[1].find(dislike => dislike == currentUser.id) ? 'rgba(152, 12, 33, 1)' : "#fff"
 document.querySelector('#like').addEventListener('click', doLike)
 document.querySelector('#dislike').addEventListener('click', doDislike)
 function doLike() {
@@ -81,12 +81,12 @@ function doLike() {
         currentLesson = Lesson.attLesson(currentLesson)
     } else if (currentLesson.popularity[1].find(dislike => dislike = currentUser.id)) {
         currentLesson.popularity[1].splice(currentLesson.popularity.findIndex(dislike => dislike = currentUser.id), 1)
-        this.style.color = "#0f0"
+        this.style.color = "rgba(49, 135, 77, 1)"
         document.querySelector('#dislike').style.color = "#fff"
         currentLesson.popularity[0].push(currentUser.id)
         currentLesson = Lesson.attLesson(currentLesson)
     } else {
-        this.style.color = "#0f0"
+        this.style.color = "rgba(49, 135, 77, 1)"
         currentLesson.popularity[0].push(currentUser.id)
         currentLesson = Lesson.attLesson(currentLesson)
     }
@@ -98,12 +98,12 @@ function doDislike() {
         currentLesson = Lesson.attLesson(currentLesson)
     } else if (currentLesson.popularity[0].find(like => like = currentUser.id)) {
         currentLesson.popularity[0].splice(currentLesson.popularity.findIndex(like => like = currentUser.id), 1)
-        this.style.color = "#f00"
+        this.style.color = "rgba(152, 12, 33, 1)"
         document.querySelector('#like').style.color = "#fff"
         currentLesson.popularity[1].push(currentUser.id)
         currentLesson = Lesson.attLesson(currentLesson)
     } else {
-        this.style.color = "#f00"
+        this.style.color = "rgba(152, 12, 33, 1)"
         currentLesson.popularity[1].push(currentUser.id)
         currentLesson = Lesson.attLesson(currentLesson)
     }
@@ -139,10 +139,10 @@ let loadingTime = 1
 canvasList.forEach((canvas, i) => {
     setTimeout(() => {
         video.currentTime = currentLesson.timestamps[i][1]
-        canvas.width = 320;
-        canvas.height = 180;
+        canvas.width = 160;
+        canvas.height = 90;
         setTimeout(() => {
-            canvas.getContext('2d').drawImage(video, 0, 0, 320, 180);
+            canvas.getContext('2d').drawImage(video, 0, 0, 160, 90);
         }, 100)
     }, 100 * ++loadingTime)
 })
@@ -154,4 +154,15 @@ window.addEventListener('load', () => {
             document.querySelector('.load-screen').remove()
         }, 500)
     }, 200 * loadingTime)
+})
+
+
+document.querySelector('.go_exercise').addEventListener('click', () =>{
+    let currentExercise = JSON.parse(localStorage.getItem('exercises')).find(exercise => exercise.lessonId = currentLesson.id)
+    localStorage.setItem('currentExercise', JSON.stringify(currentExercise))
+    window.location.href = "/html/exercise.html"
+})
+
+document.querySelector('.hide_element').addEventListener('click', () =>{
+    document.querySelector('.hide_element').parentNode.parentNode.style.display = 'none'
 })

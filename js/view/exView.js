@@ -18,13 +18,12 @@ const easteregg_point = 100
 
 let currentExercise = JSON.parse(localStorage.getItem('currentExercise'))
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
-let lessonId = currentUser.lessonId
+let lessonId = currentExercise.lessonId
 let exercisesInLesson = JSON.parse(localStorage.getItem('exercises')).filter(exercise => exercise.lessonId == currentExercise.lessonId)
-
 let consoleView = document.querySelector('.console')
 
 const div = document.querySelector('.exercise')
-const exercises = JSON.parse(localStorage.getItem('exercises'))
+
 
 
 consoleView.querySelector('p').innerHTML += `<br>C:\\Users\\${currentUser.first_name}>`
@@ -35,7 +34,7 @@ templateExercise()
 function templateExercise() {
     try {
         div.innerHTML = `
-        <h1 class="mb-5">Exercise #${exercises.findIndex(exercise => exercise.id === currentExercise.id) + 1}</h1>
+        <h1 class="mb-5">Exercise #${exercisesInLesson.findIndex(exercise => exercise.id === currentExercise.id) + 1}</h1>
         <div class="col-lg-6 col-sm-12 mb-3 fs-3"><p>${currentExercise.question}</p></div>`
 
     } catch (error) {
@@ -148,12 +147,10 @@ function templateExercise() {
 
 /* Need to create a catch error (probably) when the "exercisesInLesson[currentExercise.id]" is out of range */
 function rightAnswer() {
-    console.log(currentExercise);
     const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
 
-    console.log(currentUser.currentExercise, currentExercise.id);
     // if the user are did this exercise
-    if (currentUser.currentExercise < currentExercise.id) {
+    if (currentUser.currentExercise < +`${lessonId}${currentExercise.id}`) {
         if (exercisesInLesson[currentExercise.id]) {
             consoleView.querySelector('p').innerHTML += `<br><br><span style="color: ${getRandomColor()}">
             &nbsp;&nbsp;&nbsp;&nbsp;${currentUser.first_name}, you're right.<br>
@@ -161,7 +158,6 @@ function rightAnswer() {
             &nbsp;&nbsp;&nbsp;&nbsp;-> ${exercise_point} points<br>
             &nbsp;&nbsp;&nbsp;&nbsp;-> Unlock exercise ${currentExercise.id + 1}</span><br><br>
             C:\\Users\\${currentUser.first_name}>`
-            console.log(currentExercise);
         } else {
             consoleView.querySelector('p').innerHTML += `<br><br><span class="rainbow">
             &nbsp;&nbsp;&nbsp;&nbsp;${currentUser.first_name}, you're right.<br>
@@ -171,7 +167,6 @@ function rightAnswer() {
             &nbsp;&nbsp;&nbsp;&nbsp;-> Bonus: ${exercise_point_bonus} points<br>
             &nbsp;&nbsp;&nbsp;&nbsp;(finish lesson)</span><br><br>
             C:\\Users\\${currentUser.first_name}>`
-            console.log(1);
             consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-primary">Finished</button></div>`
             consoleView = document.querySelector('.console')
             consoleView.parentNode.querySelector('button').addEventListener('click', () => {
@@ -179,7 +174,7 @@ function rightAnswer() {
             })
             currentUser.point += exercise_point_bonus
         }
-        currentUser.currentExercise = currentExercise.id
+        currentUser.currentExercise = +`${lessonId}${currentExercise.id}`
         currentUser.point += exercise_point
     } else {
         if (exercisesInLesson[currentExercise.id]) {
@@ -204,12 +199,8 @@ function rightAnswer() {
             currentUser.point += exercise_point_repeated
         }
     }
-    console.log(currentExercise, exercisesInLesson);
     currentExercise = exercisesInLesson[exercisesInLesson.findIndex(exercise => exercise.id == currentExercise.id) + 1]
-    console.log("wuw", currentUser);
-    console.log(JSON.parse(localStorage.users))
     User.attUserOnStorage(currentUser)
-    console.log(JSON.parse(localStorage.users))
     localStorage.setItem('currentUser', JSON.stringify(currentUser))
     consoleView.scrollTop = consoleView.scrollHeight
     templateExercise()
