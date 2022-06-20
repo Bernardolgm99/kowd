@@ -68,11 +68,11 @@ img{
 .carousel-control-next{
     display: flex !important;
     justify-content: flex-end !important;
-    margin: 25vh 6%;
+    margin: 22% 6%;
 }
 
 .carousel-control-prev{
     display: flex !important;
     justify-content: flex-start !important;
-    margin: 25vh 6%;
+    margin: 22% 6%;
 }
