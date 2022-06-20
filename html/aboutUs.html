@@ -1,53 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="../css/aboutUs.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="../css/aboutUs.css">
 </head>
 <body>
-    <section class="container">
-        <div class="itens-texto">
-            <h1>MEET OUR TEAM</h1>
-            <h4>We are all very different. We were born in different places, at different times, we love different music, food, movies, hobbies. But we have something that unites us all. It is our project. We are at its heart. We are not just a team, we are a family.</h4>
-        </div>
-    </section>
-    <section class="container">
-        <img src="../media/img/kowd_white.png">
-    </section>
-    <section class="container">
-
+    <section class="all">
+        <div class="container">
+            <div class="itens-texto">
+                <h1>MEET OUR TEAM</h1>
+                <h4>We are all very different. We were born in different places, at different times, we love different music, food, movies, hobbies. But we have something that unites us all. It is our project. We are at its heart. We are not just a team, we are a family.</h4>
+            </div>  
+            <img class="img" src="../media/img/kowd_white.png">
             <div class="row container-info">
                 <div class="card">
                     <span class="material-symbols-outlined">draw</span>
-                  <div class="card-body">
-                    <h5 class="card-title">Creativity</h5>
-                    <p class="card-text">We aspired to have tottaly diferent webstie from normal, so we focused in the vapor wave astetic as well as an rgb one</p>
-                  </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Creativity</h5>
+                        <p class="card-text">We aspired to have tottaly diferent webstie from normal, so we focused in the vapor wave astetic as well as an rgb one</p>
+                    </div>
                 </div>
                 <div class="card">
                     <span class="material-symbols-outlined">public</span>
-                  <div class="card-body">
-                    <h5 class="card-title">Worldwide</h5>
-                    <p class="card-text">We strive to inspire people all around the world to create their, simple or complex, websites just that little better.</p>
-                  </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Worldwide</h5>
+                        <p class="card-text">We strive to inspire people all around the world to create their, simple or complex, websites just that little better.</p>
+                    </div>
                 </div>
                 <div class="card">
                     <span class="material-symbols-outlined">sentiment_satisfied</span>
-                  <div class="card-body">
-                    <h5 class="card-title">User Satifaction</h5>
-                    <p class="card-text">We fight for the satifaction of every single user when using our products, through diferent design and functions in those same products.</p>
-                  </div>
+                    <div class="card-body">
+                        <h5 class="card-title">User Satifaction</h5>
+                        <p class="card-text">We fight for the satifaction of every single user when using our products, through diferent design and functions in those same products.</p>
+                    </div>
                 </div>
             </div>
+        </div>
+        <section class="container-fluid carossel">
+            <div class="carousel slide" data-ride="carousel" id="myCarousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="35000">
+                        <div class="card developer">
+                            <img src="../media/img/eduardo.jpg" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Eduardo Alves</h5>
+                                <h4 class="card-subtitle mt-2">Developer/Designer</h4>
+                            </div> 
+                        </div>        
+                    </div>
+                    <div class="carousel-item" data-bs-interval="35000">
+                        <div class="card developer">
+                            <img src="../media/img/bernardo.jpg" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Bernardo Macedo</h5>
+                                <h4 class="card-subtitle mt-2">Developer/Designer</h4>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="35000">
+                        <div class="card developer">
+                            <img src="../media/img/gaspar.jpg" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Gaspar Vieira</h5>
+                                <h4 class="card-subtitle mt-2">Developer/Designer</h4>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#myCarousel" class="carousel-control-prev" role="button" data-slide="prev">
+                <span class="sr-only">Previous</span>
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a href="#myCarousel" class="carousel-control-next" role="button" data-slide="prev">
+                <span class="sr-only">Previous</span>
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+        </section>
     </section>
-    <section>
-        
-    </section>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </body>
 </html>

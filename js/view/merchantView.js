@@ -1,8 +1,7 @@
 import * as Item from "../models/itemsModel.js"
-
+import * as User from "../models/userModel.js"
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 if (!(localStorage.getItem('currentUser'))) window.location.href = "../../html/login.html"
-//console.log(currentUser)
 //render points
 function renderPoints() {
     let pointPlace = document.querySelector('.points')
@@ -114,8 +113,10 @@ function renderBtn() {
                     merchantLines(1)
                 }
             }
+            //organiza e atualiza no currentUser e na lista de Users as compras feitas
             (currentUser.bag).sort()
             localStorage.setItem('currentUser', JSON.stringify(currentUser))
+            User.attUserOnStorage(currentUser)
             renderShop()
             renderPoints()
         })

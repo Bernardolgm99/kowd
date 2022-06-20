@@ -5,6 +5,8 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    height: 100vh;
+    background-image: fixed !important;
 }
 
 img{
@@ -12,7 +14,6 @@ img{
 }
 
 .itens-texto{
-    margin-top: 20vh;
     text-align: center !important;
     background-color: rgba(0, 0, 0, 0.6);
 }
@@ -32,4 +33,46 @@ img{
 
 .card .material-symbols-outlined {
   font-size: 100px;
+}
+
+.carousel{
+    height: 20vh;
+}
+
+.img{
+    width: 90%;
+}
+
+.carossel{
+    position: absolute;
+}
+
+.developer{
+    width: 100%;
+    background-color: rgb(36, 4, 4);
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.developer img{
+    width: 15%;
+    align-self: center !important;
+    border-radius: 50%;
+    margin-top: 3%;
+}
+
+.developer .card-body{
+    margin-top: 3%;
+}
+
+.carousel-control-next{
+    display: flex !important;
+    justify-content: flex-end !important;
+    margin: 25vh 6%;
+}
+
+.carousel-control-prev{
+    display: flex !important;
+    justify-content: flex-start !important;
+    margin: 25vh 6%;
 }
