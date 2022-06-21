@@ -3,13 +3,12 @@ let achievements = document.querySelector('#achievements')
 let leaderboard = document.querySelector('#leaderboard')
 
 
-
 //Tutorial Region
 current_lesson.querySelector('.lesson-div').innerHTML = `
 <span class="lesson-text">
 ${currentUser.currentExercise % 10 == 0 ?
-        `Current Lesson ${Math.trunc(currentUser.currentExercise / 10)}` :
-        `Current Lesson ${Math.trunc(currentUser.currentExercise / 10)}, Exercise ${currentUser.currentExercise % 10}`
+        `function current(){<br>Lesson = ${Math.trunc(currentUser.currentExercise/10)%10};<br>}` :
+        `function current(){<br>Lesson = ${Math.trunc(currentUser.currentExercise/10)%10};<br>Exercise = ${currentUser.currentExercise % 10};<br>}`
     }
 </span>
 `
@@ -66,8 +65,8 @@ let users = JSON.parse(localStorage.getItem('users'))
 users.sort((userA, userB) => {
     return userB.point - userA.point
 })
+users = users.filter(user => user.type == 0)
 let max_point = users[0].point
-console.log(max_point);
 users.forEach((user,i) => {
     leaderboard.querySelector('tbody').innerHTML += `
     <tr>

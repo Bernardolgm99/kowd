@@ -2,8 +2,9 @@
 
 import * as Item from "../models/itemsModel.js"
 import * as User from "../models/userModel.js"
+import * as Base from "../base.js"
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
-if (!(localStorage.getItem('currentUser'))) window.location.href = "../../html/login.html"
+
 //render points
 function renderPoints() {
     let pointPlace = document.querySelector('.points')
@@ -11,6 +12,16 @@ function renderPoints() {
 }
 
 //merchantLines
+function typeWriter(element){
+    const textArray = element.innerText.split('');
+    element.innerHTML = ''
+    textArray.forEach((letter, i) => {
+        setTimeout(() =>{
+            element.innerHTML += letter
+        }, 75*i)
+    })
+}
+
 function merchantLines(value){
     let merchantLinePlace = document.querySelector('.merchantLines')
     if (value == 0) {
@@ -23,6 +34,7 @@ function merchantLines(value){
     } else {
         merchantLinePlace.innerHTML = `<p>What a great purchase you made today, buy anything that you want</p>`
     }
+    typeWriter(document.querySelector('.merchantLines'))
 
 }
 merchantLines(0)

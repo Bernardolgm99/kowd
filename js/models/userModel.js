@@ -84,8 +84,8 @@ export default class User{
     password = ''
     email = ''
     type = 0 //(0 - user) (1 - admin)
-    currentExercise = 0
-    bag = [0,0,0,0]
+    currentExercise = 110
+    bag = []
     level = 0
     point = 0
     easteregg = []

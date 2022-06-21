@@ -5,20 +5,6 @@ function initdata() {
     if (!localStorage.users) {
         let users = [
             {
-                id: 1,
-                first_name: 'Admin',
-                last_name: 'Admin',
-                password: 'admin',
-                email: 'admin@example.com',
-                type: 1,
-                currentExercise: 0,
-                bag: [0, 0, 0, 0],
-                level: 0,
-                point: 0,
-                easteregg: [],
-                achievements: [],
-            },
-            {
                 id: 2,
                 first_name: 'John',
                 last_name: 'Doe',
@@ -35,10 +21,10 @@ function initdata() {
             },
             {
                 id: 3,
-                first_name: 'Piruka',
-                last_name: 'Style',
-                password: 'admin',
-                email: 'yau@example.com',
+                first_name: 'José',
+                last_name: 'Magalhães',
+                password: '123',
+                email: 'jose2002@example.com',
                 type: 0,
                 currentExercise: 0,
                 bag: [0, 0, 0, 0],
@@ -72,33 +58,13 @@ function initdata() {
         console.log('admin data injected')
     }
 
-    if (!localStorage.currentUser) {
-        let currentUser = {
-            id: 2,
-            first_name: 'John',
-            last_name: 'Doe',
-            password: '1234',
-            email: 'johndoe@example.com',
-            type: 0,
-            currentExercise: 0,
-            bag: [1, 3],
-            level: 0,
-            point: 500,
-            achievements: [],
-            easteregg: [],
-            img: "../media/userIcon/user1.jpg"
-        }
-        localStorage.setItem('currentUser', JSON.stringify(currentUser))
-        console.log('current user data injected')
-    }
-
     if (!localStorage.modules) {
         let modules = [{
             id: 1,
             name: 'Module1',
-            boss_life: '2000',
+            boss_life: '1000',
             boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`, 0]]
-            
+
         }, {
             id: 2,
             name: 'Module2',
@@ -107,7 +73,7 @@ function initdata() {
         }, {
             id: 3,
             name: 'Module3',
-            boss_life: '2000',
+            boss_life: '3000',
             boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`, 0]]
         }]
         localStorage.setItem('modules', JSON.stringify(modules))
@@ -117,35 +83,36 @@ function initdata() {
     if (!localStorage.lessons) {
         let lessons = [{
             id: 1,
-            name: 'so vim dizer yau',
+            name: 'Variables',
             url: '../aula.mp4',
-            popularity: [[],[]],
+            popularity: [[], []],
             idModule: 1,
-            description: 'yauyauyau',
-            timestamps: [['primeiro comi o cu de quem ta lendo', 100],['segundo batendo punheta com o pau no ventilador',200],['terceiro hoje tem festa lá no meu ap',300],['quarto dias tem uma semana',400]]
-
+            description: 'Creating a variable in JavaScript is called "declaring" a variable. You declare a JavaScript variable with the var or the let keyword: var carName;.',
+            timestamps: [['primeiro', 100], ['segundo', 200], ['terceiro', 300], ['quarto', 400]]
         }, {
             id: 2,
-            name: 'so vim dizer yau',
-            url: '',
-            popularity: 2,
+            name: 'Conditionals',
+            url: '../aula.mp4',
+            popularity: [[], []],
             idModule: 1,
-            description: 'yauyauyau',
+            description: 'The conditional (ternary) operator is the only JavaScript operator that takes three operands: a condition followed by a question mark ( ? ), then an expression to execute if the condition is truthy followed by a colon ( : ), and finally the expression to execute if the condition is falsy.',
+            timestamps: [],
         }, {
             id: 3,
-            name: 'so vim dizer yau',
-            url: '',
-            popularity: 2,
+            name: 'Loops',
+            url: '../aula.mp4',
+            popularity: [[], []],
             idModule: 2,
-            description: 'yauyauyau',
+            description: 'The For Loop ; Statement 1 is executed (one time) before the execution of the code block. ; Statement 2 defines the condition for executing the code block.',
+            timestamps: [],
         }, {
             id: 4,
-            name: 'so vim dizer yau',
-            url: '',
-            popularity: 2,
+            name: 'Arrays',
+            url: '../aula.mp4',
+            popularity: [[], []],
             idModule: 3,
-            description: 'yauyauyau',
-            
+            description: 'Arrays are a special type of objects. The typeof operator in JavaScript returns "object" for arrays. But, JavaScript arrays are best described as arrays.',
+            timestamps: [],
         }]
         localStorage.setItem('lessons', JSON.stringify(lessons))
         console.log('lessons data injected')
@@ -181,49 +148,40 @@ function initdata() {
         console.log('exercises data injected')
     }
 
-    if (!localStorage.currentExercise) {
-        let currentExercise = {
-            id: 1,
-            lessonId: 1,
-            type: 1,
-            answer: "true",
-            question: `The keyword "let" is used to do a variable?`,
-        }
-        localStorage.setItem('currentExercise', JSON.stringify(currentExercise))
-        console.log('exerciseExercise data injected')
-    }
-
-    if (!localStorage.currentLesson) {
-        let currentLesson = {
-            id: 1,
-            name: 'so vim dizer yau',
-            url: '../aula.mp4',
-            popularity: 2,
-            idModule: 1,
-            description: 'yauyauyau',
-            timestamps: [['primeiro', 100],['segundo',200],['terceiro',300],['quarto',400]]
-        }
-        localStorage.setItem('currentLesson', JSON.stringify(currentLesson))
-        console.log('exerciseExercise data injected')
-    }
-    
     if (!localStorage.items) {
         let items = [
             {
-            id: 1,
-            name: 'Sword of the Abyss', 
-            description:'The next time you hit an enemy, he will lose more health than normal', 
-            value: 2000,
-            img: '../../media/img/icon_playMaker.png'
-        }, {
-            id: 3,
-            name: 'Guardian of Anubis', 
-            description:'You will receive less damage', 
-            value: 1200,
-            img: '../../media/img/icon_playMaker.png'
-        }
-    ]
-    localStorage.setItem('items', JSON.stringify(items))
-    console.log('Items data injected')
+                id: 1,
+                name: 'Sword of the Abyss',
+                description: 'When you hit an enemy, he will lose more health than normal',
+                value: 2000,
+                img: '../../media/img/icon_playMaker.png'
+            }, {
+                id: 2,
+                name: 'Guardian of Anubis',
+                description: 'You will receive less damage',
+                value: 1200,
+                img: '../../media/img/icon_wayToCool.png'
+            }, {
+                id: 3,
+                name: 'Saitama-san',
+                description: 'You gone starts half hp but can kill the boss in one-hit',
+                value: 50200,
+                img: '../../media/img/icon_deathUnbound.png'
+            }, {
+                id: 4,
+                name: 'Weak like cuphead',
+                description: 'Bosses will start with half life',
+                value: 1200,
+                img: '../../media/img/icon_playMaker.png'
+            }
+        ]
+        localStorage.setItem('items', JSON.stringify(items))
+        console.log('Items data injected')
+    }
+    if (!localStorage.comments) {
+        let comments = []
+        localStorage.setItem('comments', JSON.stringify(comments))
+        console.log('Comments data injected')
     }
 }

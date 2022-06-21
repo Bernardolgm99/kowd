@@ -27,6 +27,7 @@ body{
     background-color: rgba(175, 255, 242, 0.45);
     margin-left: 80px;
     font-size: 13px;
+    padding: 10px 10px 10px 45px;
 }
 .text-box img {
     position: absolute;

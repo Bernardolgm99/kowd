@@ -26,7 +26,7 @@ document.querySelector('#btnLogInAcc').addEventListener('click', () => {
             document.querySelector('#inform').innerHTML = `<div class="alert alert-success" role="alert">
                                                                 Welcome back ${validation.first_name}!
                                                             </div>`
-            setTimeout(() => {window.location.href = "./index.html"},1000)
+            setTimeout(() => {window.location.href = "./userHome.html"},1000)
         }
     } catch(error){
         document.querySelector('#inform').innerHTML = `<div class="alert alert-danger" role="alert">
