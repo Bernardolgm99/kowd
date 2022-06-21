@@ -5,6 +5,18 @@ function initdata() {
     if (!localStorage.users) {
         let users = [
             {
+                id: 1,
+                first_name: 'Admin',
+                last_name: 'Admin',
+                password: 'admin',
+                email: 'admin@example.com',
+                type: 1,
+                currentExercise: 0,
+                bag: [0, 0, 0, 0],
+                level: 0,
+                point: 0
+            },
+            {
                 id: 2,
                 first_name: 'John',
                 last_name: 'Doe',

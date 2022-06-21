@@ -35,6 +35,22 @@ function validateEmail(email) {
 export function login(email, password){
     
     //CHECK IF THERE IS A USER WITH THE SAME EMAIL AND PASSWORD
+
+    let allAdmins = usersData.filter(user => user.type == 1)
+    let loggedAdmin = allAdmins.find(admin => admin.email == email && admin.password == password)
+
+    if(loggedAdmin != undefined){
+        if(loggedAdmin.email == email) {
+            if(loggedAdmin != undefined){
+                localStorage.setItem('currentUser', JSON.stringify(loggedAdmin))
+                window.location.href="/admin.html"
+            } else {
+                throw Error('Email or password are invalid! Please try again')
+            }
+        }
+    }
+    console.log(email)
+
     let loggedUser = usersData.find(user => user.email == email && user.password == password)
 
     if(loggedUser != undefined){

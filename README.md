@@ -1,2 +1,5 @@
 # kowd
 Projeto TSIW-ESMAD, site de tutorial javascript
+
+DISCLAIMER:
+    WE DON'T OWN ANY SONG, MOST OF THE SONGS BELONG TO TOBY FOX, PLEASE GO AND SUPPORT HIM
