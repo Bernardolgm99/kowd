@@ -16,7 +16,7 @@ function reset() {
             input.type = "password"
         })
     }
-    document.querySelector('.divHidde').innerHTML = ""
+    document.querySelector('.divHide').innerHTML = ""
     document.querySelector('.inform').innerHTML = ""
 }
 
@@ -41,7 +41,7 @@ let myInput = document.querySelector('.imgPerfil')
 let valor = 0
 myInput.addEventListener('click', (event) => {
     event.preventDefault()
-    let divEscondida = document.querySelector('.divHidde')
+    let divEscondida = document.querySelector('.divHide')
     if(valor == 0){
         divEscondida.innerHTML = ''
         let imgName = ['../media/userIcon/user1.jpg','../media/userIcon/user2.png','../media/userIcon/user3.png', '../media/userIcon/user4.png']
@@ -65,18 +65,6 @@ function addToPerfilImg() {
         })
     })
 }
-/* let input = document.querySelector('.fileAdd')
-input.addEventListener('change', () => {
-    let reader = new FileReader();
-    reader.addEventListener('load', () => {
-        console.log(reader, reader.result)
-        currentUser.img = reader.result;
-        User.attUserOnStorage(currentUser)
-        localStorage.setItem('currentUser', JSON.stringify(currentUser))
-        console.log(currentUser)
-    })
-    reader.readAsDataURL(input.files[0])
-}) */
 
 /* reset */
 document.querySelector('#resetBtn').addEventListener('click', () => {reset()})
@@ -101,5 +89,6 @@ document.querySelector('#saveBtn').addEventListener('click', (event) => {
     localStorage.setItem('currentUser', JSON.stringify(currentUser))
     User.attUserOnStorage(currentUser)
     console.log('teste')
-    setTimeout(reset, 5000)
+    setTimeout(reset, 3000)
+    document.querySelector('#userIcon').querySelector('img').src = document.querySelector('.imgPerfil').src
 });

@@ -1,3 +1,5 @@
+/* text wright missing */
+
 import * as Item from "../models/itemsModel.js"
 import * as User from "../models/userModel.js"
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))

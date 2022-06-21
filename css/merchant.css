@@ -2,7 +2,6 @@
 @import url('http://fonts.cdnfonts.com/css/minecraftia');
 
 body{
-    color: rgb(255, 255, 255);
     font-family: 'IBM Plex Mono', monospace;
     background-image: url('../media/img/merchantBackground.png');
     background-repeat: no-repeat;
@@ -108,9 +107,6 @@ body{
     }
 }
 @media (min-width: 520px) {
-    .shop {
-        height: 65vh;
-    }
     .shopItem .txt-large {
         font-size: 28px;
     }
@@ -162,6 +158,9 @@ body{
     }
 }
 @media (min-width: 1000px) {
+    .shop {
+        height: 65vh;
+    }
     .shopItem .txt-large {
         font-size: 32px;
     }
