@@ -90,13 +90,20 @@ function initdata() {
     if (!localStorage.modules) {
         let modules = [{
             id: 1,
-            name: 'Module1'
+            name: 'Module1',
+            boss_life: '2000',
+            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`][0]]
+            
         }, {
             id: 2,
-            name: 'Module2'
+            name: 'Module2',
+            boss_life: '2000',
+            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`][0]]
         }, {
             id: 3,
-            name: 'Module3'
+            name: 'Module3',
+            boss_life: '2000',
+            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`][0]]
         }]
         localStorage.setItem('modules', JSON.stringify(modules))
         console.log('modules data injected')
