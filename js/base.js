@@ -1,5 +1,6 @@
-let currentUser = JSON.parse(localStorage.getItem('currentUser'))
+// <script type="text/javascript" src="/js/base.js"></script>
 
+let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 if (currentUser){
     let body = document.querySelector('body')
     let nav = document.createElement('section')
@@ -19,7 +20,7 @@ if (currentUser){
             </div>
             <button type="button" class="navbar-btn material-symbols-outlined">menu</button>
             <div id="userIcon">
-                <button href="perfilSettings.html" class="userIcon">
+                <button class="userIcon">
                     <img src="${currentUser.img}">
                 </button>
                 <div class="menu-dropbox">
@@ -48,7 +49,7 @@ if (currentUser){
     })
     body.querySelector('.logout').addEventListener('click', () => {
         localStorage.removeItem("currentUser")
-        window.location.href = "./html/login.html"
+        window.location.href = "./login.html"
     })
     let icon_button = body.querySelector('.userIcon')
     let icon_menu = body.querySelector('.menu-dropbox')
@@ -77,11 +78,39 @@ if (currentUser){
             menu_mobile.innerHTML = ""
         }
     })
-    navbar_btn.addEventListener('focusout', () => {
-        document.querySelector('#menu-mobile').innerHTML = ""
+    navbar_btn.addEventListener('focusout', (event) => {
+        let links = document.querySelector('#menu-mobile').querySelectorAll('a')
+        if(!Object.values(links).find(link => link == event.relatedTarget)) document.querySelector('#menu-mobile').innerHTML = ""
     })
-}
+} else if (!(window.location.href.search('/html/index.html') > -1)) {
+    window.location.href = '/html/login.html'
+} else {
+    let body = document.querySelector('body')
+    let nav = document.createElement('section')
+    nav.id = "navigation"
+    nav.innerHTML = `
+    <nav class="navbar">
+        <div class="container">
+            <a class="my-1" href="userHome.html">
+                <img src="/media/img/icon.png">
+            </a>
+            <div id="userIcon">
+            <a href="login.html" class="btn btn-kowd-secondary stretched-link">
+                Sing In
+            </a>
+            <a href="register.html" class="btn btn-kowd stretched-link">
+                Sing Up
+            </a>
+            </div>
+        </div>
+        </div>
+        <div id="menu-mobile" class="container-fluid">
+        </div>
+    </nav>
+    `
+    body.insertBefore(nav,body.firstChild)
 
+}
 
 
 let prevScrollpos = window.pageYOffset;

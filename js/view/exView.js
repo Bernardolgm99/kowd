@@ -47,8 +47,8 @@ function templateExercise() {
 
             div.innerHTML += `
             <div class="col-12 row bd-highlight justify-content-evenly" style="margin: 0 auto;">
-            <button class="btn btn-primary mb-2 col-lg-5 col-sm-12 true">True</button>
-            <button class="btn btn-primary mb-2 col-lg-5 col-sm-12 false">False</button>
+            <button class="btn btn-orange mb-2 col-lg-5 col-sm-12 true">True</button>
+            <button class="btn btn-orange mb-2 col-lg-5 col-sm-12 false">False</button>
             </div>
             `
             if (currentExercise.answer == "true") {
@@ -82,10 +82,10 @@ function templateExercise() {
 
             div.innerHTML += `
             <div class="col-lg-6 col-sm-12 d-flex flex-column bd-highlight">
-            <button class="btn btn-primary mb-2 ${array[0] === currentExercise.answer ? "true" : "false"}">${array[0]}</button>
-            <button class="btn btn-primary mb-2 ${array[1] === currentExercise.answer ? "true" : "false"}">${array[1]}</button>
-            <button class="btn btn-primary mb-2 ${array[2] === currentExercise.answer ? "true" : "false"}">${array[2]}</button>
-            <button class="btn btn-primary ${array[3] === currentExercise.answer ? "true" : "false"}">${array[3]}</button>
+            <button class="btn btn-orange mb-2 ${array[0] === currentExercise.answer ? "true" : "false"}">${array[0]}</button>
+            <button class="btn btn-orange mb-2 ${array[1] === currentExercise.answer ? "true" : "false"}">${array[1]}</button>
+            <button class="btn btn-orange mb-2 ${array[2] === currentExercise.answer ? "true" : "false"}">${array[2]}</button>
+            <button class="btn btn-orange ${array[3] === currentExercise.answer ? "true" : "false"}">${array[3]}</button>
             </div>
             `
 
@@ -109,7 +109,7 @@ function templateExercise() {
                 }
             })
 
-            div.childNodes[4].innerHTML += `<button class="btn btn-primary" id="submit">Submit</button>`
+            div.childNodes[4].innerHTML += `<button class="btn btn-orange" id="submit">Submit</button>`
             document.querySelector('#submit').addEventListener('click', () => {
                 let answers_user = []
                 document.querySelectorAll('.input-hide').forEach((input) => {
@@ -167,7 +167,7 @@ function rightAnswer() {
             &nbsp;&nbsp;&nbsp;&nbsp;-> Bonus: ${exercise_point_bonus} points<br>
             &nbsp;&nbsp;&nbsp;&nbsp;(finish lesson)</span><br><br>
             C:\\Users\\${currentUser.first_name}>`
-            consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-primary">Finished</button></div>`
+            consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-orange">Finished</button></div>`
             consoleView = document.querySelector('.console')
             consoleView.parentNode.querySelector('button').addEventListener('click', () => {
                 window.location.href = "../html/tutorial.html"
@@ -191,7 +191,7 @@ function rightAnswer() {
             &nbsp;&nbsp;&nbsp;&nbsp;-> ${exercise_point_repeated} points<br>
             &nbsp;&nbsp;&nbsp;&nbsp;(finish lesson)</span><br><br>
             C:\\Users\\${currentUser.first_name}>`
-            consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-primary">Finished</button></div>`
+            consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-orange">Finished</button></div>`
             consoleView = document.querySelector('.console')
             consoleView.parentNode.querySelector('button').addEventListener('click', () => {
                 window.location.href = "../html/tutorial.html"
@@ -202,19 +202,28 @@ function rightAnswer() {
     currentExercise = exercisesInLesson[exercisesInLesson.findIndex(exercise => exercise.id == currentExercise.id) + 1]
     User.attUserOnStorage(currentUser)
     localStorage.setItem('currentUser', JSON.stringify(currentUser))
+    document.querySelector('#navigation').querySelector('#userIcon').querySelector('.info').innerHTML = `
+        <div class="info">
+            <span>Player: ${currentUser.first_name}</span>
+            <br>
+            <span>Level: ${currentUser.level}</span>
+            <br>
+            <span>Point: ${currentUser.point}</span>
+        </div>
+    `
     consoleView.scrollTop = consoleView.scrollHeight
     templateExercise()
 }
 function wrongAnswer() {
     const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
     modal_content.innerHTML = `
-        <div class="modal-body">
+        <div class="modal-body bg-dark">
             ${currentUser.first_name}, you're wrong.<br>
             Want to try again or study a little bit more?
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer bg-dark">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Try again</button>
-            <button id="go-study" type="button" class="btn btn-primary">Go to lesson</button>
+            <button id="go-study" type="button" class="btn btn-kowd">Go to lesson</button>
         </div>
     `
     document.querySelector('#go-study').addEventListener('click', () => {
@@ -227,13 +236,13 @@ if (!currentUser.easteregg.find(egg => egg == 1)) {
     document.querySelector('.easteregg').addEventListener('click', () => {
         const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
         modal_content.innerHTML = `
-            <div class="modal-body">
+            <div class="modal-body bg-dark">
                 ${currentUser.first_name}, what are u doing???.<br>
                 Ok ok, take this points!!!<br>
                 Will reciave:<br>
                 -> ${exercise_point_repeated} points<br>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer bg-dark">
                 <button type="button" class="btn btn-secondary rainbow-bg" data-bs-dismiss="modal">Bye bye UwU</button>
             </div>
         `

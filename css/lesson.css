@@ -103,20 +103,20 @@
 
 @media (max-width: 1400px) {
     .container-scroll {
-        height: 45.6vh;
+        height: 27em;
     }
 
 }
 
 @media (max-width: 1200px) {
     .container-scroll {
-        height: 30vh;
+        height: 30rem;
     }
 }
 
 @media (min-width: 1400px) {
     .container-scroll {
-        height: 53vh;
+        height: 31.1rem;
     }
 }
 
