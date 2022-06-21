@@ -26,7 +26,7 @@ function initdata() {
                 email: 'johndoe@example.com',
                 type: 0,
                 currentExercise: 0,
-                bag: [0, 0, 0, 0],
+                bag: [1, 0, 3, 0],
                 level: 0,
                 point: 0,
                 img: "../media/userIcon/user1.jpg",
@@ -81,7 +81,7 @@ function initdata() {
             email: 'johndoe@example.com',
             type: 0,
             currentExercise: 0,
-            bag: [2],
+            bag: [1, 3],
             level: 0,
             point: 500,
             achievements: [],
@@ -97,18 +97,18 @@ function initdata() {
             id: 1,
             name: 'Module1',
             boss_life: '2000',
-            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`][0]]
+            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`, 0]]
             
         }, {
             id: 2,
             name: 'Module2',
             boss_life: '2000',
-            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`][0]]
+            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`, 0]]
         }, {
             id: 3,
             name: 'Module3',
             boss_life: '2000',
-            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`][0]]
+            boss_question: [[`Predict output?\nvar x = {name:'bikki'};\nvar op = (function(x){\ndelete x;\n}return x;\n})(0);\n\nconsole.log(op);`, 0]]
         }]
         localStorage.setItem('modules', JSON.stringify(modules))
         console.log('modules data injected')
@@ -207,7 +207,23 @@ function initdata() {
         console.log('exerciseExercise data injected')
     }
     
-    if (!localStorage.comments) {
-
+    if (!localStorage.items) {
+        let items = [
+            {
+            id: 1,
+            name: 'Sword of the Abyss', 
+            description:'The next time you hit an enemy, he will lose more health than normal', 
+            value: 2000,
+            img: '../../media/img/icon_playMaker.png'
+        }, {
+            id: 3,
+            name: 'Guardian of Anubis', 
+            description:'You will receive less damage', 
+            value: 1200,
+            img: '../../media/img/icon_playMaker.png'
+        }
+    ]
+    localStorage.setItem('items', JSON.stringify(items))
+    console.log('Items data injected')
     }
 }

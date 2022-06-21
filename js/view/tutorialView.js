@@ -40,6 +40,10 @@ modules.forEach(module => {
             })
         }
   })
+
+
+  document.querySelector(`#txt${module.id}`).innerHTML +=`<a class="boss" id="${module.id}">BOSS</a>`
+
 })
 
 //FUNCTION TO SWITCH TO THE RESPECTIVE LESSON PAGE (VIDEO TUTORIAL)
@@ -56,4 +60,25 @@ document.querySelectorAll('.exercises').forEach(exercise => {
         let currentExercise = exercises.find(exerciseFinder => exerciseFinder.id == document.getElementById(`${exercise.id}`).id)
         localStorage.setItem('currentExercise', JSON.stringify(currentExercise))
     })
+})
+
+//FUNCTION TO SWITCH TO THE RESPECTIVE BOSS PAGE
+document.querySelectorAll('.boss').forEach(module => {
+  module.addEventListener('click', () => {
+    
+    document.querySelector('#modal').style.display = 'block'
+
+    document.querySelector('#btnConfirm').addEventListener('click', () => {
+      console.log(module)
+        let currentModule = modules.find(moduleFinder => moduleFinder.id == document.getElementById(`${module.id}`).id)
+        localStorage.setItem('currentModule', JSON.stringify(currentModule))
+
+        window.location.href = "./boss.html"
+    })
+
+    document.querySelector('#btnCancel').addEventListener('click', () => {
+      document.querySelector('#modal').style.display = 'none'
+    })
+
+  })
 })

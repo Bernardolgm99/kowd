@@ -126,6 +126,7 @@
 
 .nav-link-hover:hover {
     background-color: #111;
+    color: #bbb;
 }
 
 @media (max-width: 991px) {
@@ -235,4 +236,8 @@ body {
     background: #9e3313;
     border:3px solid #eee ;
     color: #eee;
+}
+
+.nav-link, .nav-link-desktop{
+    color: #bbb;
 }

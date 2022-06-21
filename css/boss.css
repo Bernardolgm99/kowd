@@ -34,7 +34,7 @@ img {
 .material-symbols-outlined {
     color: #FFFFFF;
     position: absolute;
-    left: 98%;
+    left: 97.5%;
 }
 
 #bagItems {
@@ -43,19 +43,60 @@ img {
     width: 100vw;
     top: 0;
     left: 0;
-    display: none; 
+    display: none;   
+}
+
+@keyframes RGB {
+    100% {color: greenyellow;}
+
+    80% {color: yellow}
+
+    60% {color:red}
+
+    40% {color: pink}
+
+    20% {color: blue;}
+
 }
 
 #modalBag {
     position: relative;
     background: rgb(0, 0, 0, 0.9);
-    width: 1200px;
-    height: 500px;
+    width: 80vw;
+    height: 50vh;
     margin: 0 auto;
     top: 20%;
     overflow: hidden;
     overflow-y: scroll;
     border: 5px solid rgb(255, 255, 255);
+}
+
+@keyframes skipBlink {
+    100% {color: #444444;}
+
+    50% {color: #FFFFFF}
+
+    0% {color: #444444}
+}
+
+#skipDiv {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+#skipBtn {
+    animation: skipBlink 3s linear;
+    animation-iteration-count: infinite;
+    border: 0px;
+    width: 20vw;
+}
+
+#txtInputUser {
+    background: #000000;
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
 }
 
 #bag {
@@ -68,6 +109,20 @@ img {
     margin-top: -35px;
     background: rgb(0,0,0,0.92); 
     color: #FFFFFF;
+}
+
+.itemRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    flex-wrap: nowrap;
+}
+
+.itemImg {
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
 }
 
 button{
@@ -126,7 +181,7 @@ button#btnBag {
 @keyframes healthBarGrow{
     100% {width:100%}
 
-    0% {width:0px}
+    0% {width:0%}
 
 }
 
@@ -134,6 +189,18 @@ button#btnBag {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+    height: 40vh;
+    flex-wrap: wrap;
+}
+
+#userName {
+    color: #FFFFFF;
+}
+
+#userBar {
+    display: grid;
+    justify-items: center;
+    width: 700px;
 }
 
 #bossName {
@@ -141,13 +208,19 @@ button#btnBag {
     color: white;
 }
 
-#healthBarNormal {
+#healthUserNormal {
     animation: healthBarGrow 7s linear;
     background: white;
     height: 100%;
 }
 
-#healthBarEmpty {
+#healthBossNormal {
+    animation: healthBarGrow 7s linear;
+    background: white;
+    height: 100%;
+}
+
+.healthBarEmpty {
     border: 1px solid #FFFFFF;
     width: 600px;
     height: 40px;

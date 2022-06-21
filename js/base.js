@@ -45,7 +45,7 @@ if (currentUser){
     `
     body.insertBefore(nav,body.firstChild)
     body.querySelector('.settings').addEventListener('click', () => {
-        window.location.href = "./html/perfilSettings.html"
+        window.location.href = "./perfilSettings.html"
     })
     body.querySelector('.logout').addEventListener('click', () => {
         localStorage.removeItem("currentUser")
