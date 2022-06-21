@@ -42,14 +42,14 @@ body {
     border-bottom: 10px !important;
 }
 
-section{
+.faqs{
     margin-top: 15vh;
     height: 80vh;
     overflow: hidden;
     overflow-y: scroll;
 }
 
-section::-webkit-scrollbar{
+.faqs::-webkit-scrollbar{
     display: none !important;
 }
 

@@ -11,7 +11,7 @@ body{
 }
 
 .itens {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 32px;
 }
 
@@ -36,7 +36,7 @@ body{
 .imgOP{
     width: 30%;
     max-width: 100px;
-    padding: 5px 5px 0px 5px;
+    padding: 15px 10px;
     border-radius: 50%;
 }
 
@@ -44,10 +44,6 @@ body{
     border-radius: 50%;
     background-color: rgb(0, 0, 0,.0);
     border: 0;
-}
-
-.itens{
-    padding: 5px;
 }
 
 .form-control{
@@ -71,8 +67,15 @@ body{
 }
 
 .img{
-    display: flex;
+    display: block;
     flex-direction: column;
+    position: relative;
+}
+
+.divHide{
+    position: absolute;
+    background-color: rgb(0, 0, 0,.8);
+    border-radius: 20px;
 }
 
 #itensPerfil{
@@ -95,10 +98,10 @@ body{
         max-height: 250px;
         max-width: 250px;
     }
-}
-
-@media (min-width: 294px){
-    .img {
+    .divHide{
+        position: relative;
+    }
+    .img{
         display: flex;
         align-items: center;
     }

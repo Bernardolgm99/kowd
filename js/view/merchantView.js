@@ -1,9 +1,10 @@
-/* text wright missing */
-
 import * as Item from "../models/itemsModel.js"
 import * as User from "../models/userModel.js"
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 if (!(localStorage.getItem('currentUser'))) window.location.href = "../../html/login.html"
+
+/* text wright missing */
+
 //render points
 function renderPoints() {
     let pointPlace = document.querySelector('.points')

@@ -7,6 +7,7 @@ body{
     background-position: center;
     height: 100vh;
     background-image: fixed !important;
+    background-attachment: fixed;
 }
 
 img{
@@ -45,11 +46,12 @@ img{
 
 .carossel{
     position: absolute;
+    padding-bottom: 25%;
 }
 
 .developer{
     width: 100%;
-    background-color: rgb(36, 4, 4);
+    background-color: rgb(0, 0, 0,.8);
     padding: 0 !important;
     margin: 0 !important;
 }
