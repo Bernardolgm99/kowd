@@ -89,6 +89,7 @@ export default class User{
     level = 0
     point = 0
     easteregg = []
+    achievements = []
     img= "../media/userIcon/user1.jpg"
     constructor(first_name, last_name, password, email, type = 0){
         this.id = (

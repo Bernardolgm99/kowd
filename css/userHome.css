@@ -1,0 +1,167 @@
+.lesson-div {
+    height: 25vh;
+    width: 70%;
+    margin: 0 auto;
+    background-image: url("../media/img/homeBackground.png");
+    background-position: center center;
+    position: relative;
+    cursor: pointer;
+    border-radius: 10px
+}
+
+.lesson-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+}
+
+.achievements {
+    background: -webkit-linear-gradient(#F0621B, #D368EB);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.achievements-list {
+    padding: 10px;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.achievement {
+    position: relative;
+}
+
+.achievement-img {
+    border: 0px;
+    padding: 0px;
+    border-radius: 10px;
+}
+
+.achievement-img img {
+    border-radius: 10px;
+}
+
+.block {
+    height: 200px;
+    width: 200px;
+    top: 0;
+    background-color: #000000bb;
+    position: absolute;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.block span {
+    font-size: 50px;
+    background: -webkit-linear-gradient(#C350DC, #0781BC);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%)
+}
+
+.info-status {
+    color: #fff;
+    font-size: 50px;
+}
+
+.info-text {
+    color: #fff;
+    font-size: 20px;
+}
+
+.leaderboard {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.leaderboard img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.leaderboard th:first-child,
+th:nth-child(4),
+td:first-child,
+td:nth-child(2) {
+    text-align: center;
+}
+
+.leaderboard thead tr {
+    background: #555;
+    border: 0px;
+    color: #eee
+}
+
+.leaderboard tr {
+    border-top: 10px solid rgba(0, 0, 0, 0);
+    background-color: #222;
+}
+
+.leaderboard tr:nth-child(2n+2) {
+    background: #333;
+}
+
+.point-bar {
+    height: 10px;
+
+    background: linear-gradient(90deg, #83109B, #38F8DA);
+    display: inline-block;
+    border-radius: 8px
+}
+
+.point_score {
+    float: right;
+    margin-right: 1vw;
+}
+
+@media (max-width:900px) {
+    .lesson-text {
+        font-size: 17px;
+    }
+
+    .achievements-info {
+        display: none;
+    }
+
+    .lesson-div {
+        width: 100%;
+    }
+}
+
+.fullscreen {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000000bb
+}
+
+.fullscreen .img-modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    transform: translate(-50%, -50%);
+}
+
+.fullscreen .exit {
+    position: absolute;
+    top: 10%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+    border: 0;
+    background: #f00;
+    color: #FFFFFF;
+    padding:0px;
+    height: 50px;
+}
+
+.fullscreen .exit span {
+    font-size: 50px;
+}

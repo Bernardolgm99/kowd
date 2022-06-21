@@ -14,7 +14,9 @@ function initdata() {
                 currentExercise: 0,
                 bag: [0, 0, 0, 0],
                 level: 0,
-                point: 0
+                point: 0,
+                easteregg: [],
+                achievements: [],
             },
             {
                 id: 2,
@@ -28,7 +30,8 @@ function initdata() {
                 level: 0,
                 point: 0,
                 img: "../media/userIcon/user1.jpg",
-                easteregg: []
+                easteregg: [],
+                achievements: [],
             },
             {
                 id: 3,
@@ -42,6 +45,7 @@ function initdata() {
                 level: 0,
                 point: 0,
                 img: "../media/userIcon/user1.jpg",
+                achievements: [],
                 easteregg: []
             },
         ]
@@ -80,6 +84,7 @@ function initdata() {
             bag: [2],
             level: 0,
             point: 500,
+            achievements: [],
             easteregg: [],
             img: "../media/userIcon/user1.jpg"
         }
