@@ -3,6 +3,10 @@ export function createExerciseType1OnStorage(question, answer, nameLesson) {
     let exercises = []
     let idExercise = 1
 
+    if (!nameLesson || nameLesson.toLowerCase() == 'lesson') throw Error('Select a lesson')
+    if (!question) throw Error('Input text question')
+    if (!answer) throw Error('Need to select the answer')
+
     // get lessons in localStorage
     /* if the lesson isn't in storage yet, will appear a error */
     let lessons = JSON.parse(localStorage.getItem('lessons'))
@@ -13,7 +17,6 @@ export function createExerciseType1OnStorage(question, answer, nameLesson) {
         exercises = JSON.parse(localStorage.getItem("exercises"))
         idExercise = exercises[exercises.length - 1].id + 1
     }
-
     // if the question isn't aready exist create a class Exercise and do a push
     if (!exercises.filter(exercise => { if (exercise.question == question) return true; else return false }).length) exercises.push(new Exercise(idExercise, 1, question, answer, idLesson))
 
@@ -25,6 +28,11 @@ export function createExerciseType1OnStorage(question, answer, nameLesson) {
 export function createExerciseType2OnStorage(question, answer, wrong_answers, nameLesson) {
     let exercises = []
     let idExercise = 1
+
+    if (!nameLesson || nameLesson.toLowerCase() == 'lesson') throw Error('Select a lesson')
+    if (!question) throw Error('Input text question')
+    if (!answer) throw Error('Need to select the answer')
+    if (!wrong_answers[0] && !wrong_answers[1] && !wrong_answers[2]) throw Error('Need to input all wrong ')
 
     // get lessons in localStorage
     /* if the lesson isn't in storage yet, will appear a error */
@@ -49,6 +57,11 @@ export function createExerciseType3OnStorage(question, answer, nameLesson, quest
     let exercises = []
     let idExercise = 1
 
+    if (!nameLesson || nameLesson.toLowerCase() == 'lesson') throw Error('Select a lesson')
+    if (!question) throw Error('Input text question')
+    if (!answer) throw Error('Need to select the answer')
+    if (!question_text) throw Error('Need to input text for the question')
+
     // get lessons in localStorage
     /* if the lesson isn't in storage yet, will appear a error */
     let lessons = JSON.parse(localStorage.getItem('lessons'))
@@ -65,7 +78,7 @@ export function createExerciseType3OnStorage(question, answer, nameLesson, quest
 
     // if the question isn't aready exist create a class Exercise and do a push
     if (!exercises.filter(exercise => { if (exercise.question == question) return true; else return false }).length) exercises.push(new Type3Exercise(idExercise, 3, question, answer, idLesson, question_text))
-
+    else throw Error('This exercise aready exist')
     // storage the list again
     localStorage.setItem("exercises", JSON.stringify(exercises))
 }

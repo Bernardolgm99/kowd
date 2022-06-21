@@ -4,9 +4,9 @@ import * as Module from "./models/moduleModel.js"
 import * as Lesson from "./models/lessonModel.js"
 import * as User from "./models/userModel.js"
 
-Module.createModuleOnStorage("Basic")
+/* Module.createModuleOnStorage("Basic")
 Module.createModuleOnStorage("Medium")
-Module.createModuleOnStorage("Hard")
+Module.createModuleOnStorage("Hard") */
 
 let arrayModules = JSON.parse(localStorage.getItem('modules'));
 let arrayLessons = [];
@@ -63,7 +63,12 @@ document.querySelector('#typeExercise2').addEventListener('click', () => {
         const option2 = document.querySelector("#option2").value
         const option3 = document.querySelector("#option3").value
         const options = [option1, option2, option3]
-        exModel.createExerciseType2OnStorage(text_exercise, answer, options, lesson)
+        try {
+            exModel.createExerciseType2OnStorage(text_exercise, answer, options, lesson)
+        } catch (error) {
+            document.querySelector('#exercises').querySelector('.alert').innerText = error
+            document.querySelector('#exercises').querySelector('.alert').style.display = 'block'
+        }
     })
 })
 
@@ -90,7 +95,12 @@ document.querySelector('#typeExercise1').addEventListener('click', () => {
         const lesson = document.querySelector("#btn_lesson").innerHTML
         const text_exercise = document.querySelector("#text-exercise").value
         const answer = document.querySelector('input[name="answer"]:checked').value
-        exModel.createExerciseType1OnStorage(text_exercise, answer, lesson)
+        try {
+            exModel.createExerciseType1OnStorage(text_exercise, answer, lesson)
+        } catch (error) {
+            document.querySelector('#exercises').querySelector('.alert').innerText = error
+            document.querySelector('#exercises').querySelector('.alert').style.display = 'block'
+        }
     })
 })
 
@@ -115,7 +125,12 @@ document.querySelector('#typeExercise3').addEventListener('click', () => {
         const text_exercise = document.querySelector("#text-exercise").value
         const question = document.querySelector("#question").value
         const answer = document.querySelector("#answer").value
-        exModel.createExerciseType3OnStorage(text_exercise, answer, lesson, question)
+        try {
+            exModel.createExerciseType3OnStorage(text_exercise, answer, lesson, question)
+        } catch (error) {
+            document.querySelector('#exercises').querySelector('.alert').innerText = error
+            document.querySelector('#exercises').querySelector('.alert').style.display = 'block'
+        }
     })
 })
 
@@ -146,24 +161,114 @@ document.querySelector("#createLesson").addEventListener('click', () => {
     const description = document.querySelector('#description').value
     const timeStampsList = document.querySelectorAll('.timeStamp')
     let timeStamps = []
-    if(timeStampsList.length > 0){
+    if (timeStampsList.length > 0) {
         timeStampsList.forEach(timeStamp => {
             let infoTimeStamp = []
-            console.log(timeStamp);
             infoTimeStamp.push(timeStamp.querySelector('.title-value').value)
             infoTimeStamp.push(timeStamp.querySelector('.time-value').value)
-            console.log("bom dia", infoTimeStamp);
             timeStamps.push(infoTimeStamp)
         })
     }
-    console.log(timeStamps);
-
-    if (nameModule != "Module") {
-        if (nameLesson != "") {
-            if (urlLesson != "") Lesson.createLessonOnStorage(nameModule, nameLesson, urlLesson, description, timeStamps)
-            else alert("Please select a video")
-        }
-        else alert("Please type a title")
+    try {
+        Lesson.createLessonOnStorage(nameModule, nameLesson, urlLesson, description, timeStamps)
+    } catch (error) {
+        document.querySelector('#lessons').querySelector('.alert').innerText = error
+        document.querySelector('#lessons').querySelector('.alert').style.display = 'block'
     }
-    else alert("Please select a module")
+})
+
+
+let users = JSON.parse(localStorage.getItem('users'))
+let tableUser = document.querySelector('#users')
+let adminList = users.filter(user => user.type == 1)
+let userList = users.filter(user => user.type == 0)
+
+
+users.forEach(user => {
+    tableUser.innerHTML += `
+    <tr>
+    <td>${user.id}</td>
+    <td>${user.first_name} ${user.last_name}</td>
+    <td>${user.level}</td>
+    <td>${user.point}</td>
+    <td>
+        <button class="admin btn btn-primary" value="${user.id}">
+            Admin
+        </button>
+        <button class="ban btn btn-primary" value="${user.id}">
+            Ban
+        </button>
+    </td>
+    </tr>
+    `
+})
+
+
+
+let btns_admin = document.querySelectorAll('.admin')
+btns_admin.forEach(admin => {
+    let user = users.find(user => user.id === +admin.getAttribute('value'))
+    if (adminList.find(admin => admin.id === user.id)) admin.style.backgroundColor = "#0f0"
+    else admin.style.backgroundColor = "#f00"
+    admin.addEventListener('click', () => {
+        if (user.type) {
+            user.type = 0
+            User.attUserOnStorage(user)
+            admin.style.backgroundColor = "#f00"
+        } else {
+            user.type = 1
+            User.attUserOnStorage(user)
+            admin.style.backgroundColor = "#0f0"
+        }
+    })
+})
+
+
+let btns_ban = document.querySelectorAll('.ban')
+btns_ban.forEach(ban => {
+    ban.addEventListener('click', () => {
+        let user = users.find(user => user.id === +ban.getAttribute('value'))
+        User.removeUserOnStorage(user)
+        ban.parentNode.parentNode.remove()
+    })
+})
+
+let bossDiv = document.querySelector('.boss-questions')
+
+bossDiv.querySelector('#boss-question-submit').addEventListener('click', () => {
+    let qty = bossDiv.querySelector('#qty-boss').value
+    bossDiv.querySelector('#boss-questions').innerHTML = ""
+    for (let i = 0; i < qty; i++) {
+        bossDiv.querySelector('#boss-questions').innerHTML += `
+        <div class="boss-question">
+            <div class="input-group mb-1">
+                <label class="input-group-text" for="time-stamp-quantity">Question #${i + 1}</label>
+                <textarea class="question-boss form-control" aria-label="With textarea"></textarea>
+            </div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="time-stamp-quantity">Answers #${i + 1}</label>
+                <textarea class="answer-boss form-control" aria-label="With textarea"></textarea>
+            </div>
+        </div>
+        `
+    }
+    document.querySelector('#createModule').style.display = 'block'
+})
+
+document.querySelector('#createModule').addEventListener('click', () => {
+    let module_name = document.querySelector('#module-name').value
+    let boss_life = document.querySelector('#boss-life').value
+    let question_boss = document.querySelectorAll('.boss-question')
+    let array_boss = []
+    question_boss.forEach(question => {
+        let question_boss = question.querySelector('.question-boss').innertText
+        let answer_boss = question.querySelector('.answer-boss').innerText
+        array_boss.push([question_boss, answer_boss])
+    })
+    try {
+        Module.createModuleOnStorage(module_name, boss_life, array_boss);
+    } catch (error) {
+        document.querySelector('#module').querySelector('.alert').innerText = error
+        document.querySelector('#module').querySelector('.alert').style.display = 'block'
+    }
 })

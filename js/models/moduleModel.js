@@ -1,5 +1,5 @@
 // create a class of module in localStorage
-export function createModuleOnStorage(nameModule) {
+export function createModuleOnStorage(name_module, boss_life, boss_questions) {
     let modules = []
     let idModule = 1
 
@@ -10,15 +10,17 @@ export function createModuleOnStorage(nameModule) {
     }
 
     // if module don't aready exist in localStorage, create a class of Module and push it in array
-    if(!modules.filter(module => {if (module.name == nameModule) return true; else return false}).length) modules.push(new Module(idModule, nameModule))
-    
+    if (!modules.filter(module => { if (module.name == name_module) return true; else return false }).length) modules.push(new Module(idModule, name_module, boss_life, boss_questions))
+    else throw Error('This module already exists')
     // storage the list again
     localStorage.setItem("modules", JSON.stringify(modules))
 }
 
 class Module {
-    constructor(id, name) {
+    constructor(id, name, boss_life, boss_questions) {
         this.id = id;
         this.name = name;
+        this.boss_life = boss_life;
+        this.boss_questions = boss_questions;
     }
 }

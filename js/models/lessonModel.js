@@ -1,7 +1,9 @@
 export function createLessonOnStorage(nameModule, nameLesson, urlLesson, description, timestamps = []) {
     let lessons = []
     let idLesson = 1
-
+    if (!nameModule || nameModule.toLowerCase() == 'module') throw Error ("Select a Module")
+    if (!nameLesson) throw Error ("Input lesson name")
+    if (!urlLesson) throw Error ("Select video file")
     // get modules in localStorage and get the Id
     /* if don't have a module in localStorage yet, will do a error*/
     let modules = JSON.parse(localStorage.getItem('modules'))
@@ -25,11 +27,10 @@ export function createLessonOnStorage(nameModule, nameLesson, urlLesson, descrip
             timestamps[i][1] = timestamp_att
         })
     }
-    console.log(timestamps);
-    console.log(idModule, modules, lessons);
 
     // verify if lesson exist, if doesn't exist, create a new Lesson and append on lessons
     if (!lessons.filter(lesson => { if (lesson.name == nameLesson) return true; else return false }).length) lessons.push(new Lesson(idLesson, nameLesson, urlLesson, idModule, description, timestamps))
+    else throw Error('This lesson aready exist')
 
     // storage the list of lessons again
     localStorage.setItem("lessons", JSON.stringify(lessons))
