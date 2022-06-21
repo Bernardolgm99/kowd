@@ -30,7 +30,7 @@ modules.forEach(module => {
 //FUNCTION TO CREATE NEW DIVS FOLLOWING THE NUMBER OF LESSONS AND EXERCISES
   lessons.forEach(lesson => {
       if(lesson.idModule == module.id) {
-          document.querySelector(`#txt${module.id}`).innerHTML +=`<a href="lesson.html" class="lessons" id="${lesson.id}">LESSSON ${cont}</a>`
+          document.querySelector(`#txt${module.id}`).innerHTML +=`<a href="lesson.html" class="lessons" id="${lesson.id}">LESSSON ${cont} - ${lesson.name}</a>`
             cont +=1 
           exercises.forEach(exercise => {
                 if(exercise.lessonId == lesson.id){

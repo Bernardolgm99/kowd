@@ -12,7 +12,7 @@ body{
 }
 
 .itensInputs {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(255, 0, 0, 0.6);
     border-radius: 32px;
 }
 
@@ -24,4 +24,34 @@ body{
     border-width: 2px;
     border-color: white;
     margin: auto;
+}
+
+.imgPerfil{
+    width: auto;
+    width: 100%;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.fileAdd{
+    opacity: 0.0; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0; 
+    width: 100%; 
+    height:80%;
+}
+
+.img{
+    position: relative; 
+    line-height: 30px; 
+    text-align: center;
+}
+
+@media (min-width: 100px) {
+    .img {
+        order: 2 !important;
+    }
 }

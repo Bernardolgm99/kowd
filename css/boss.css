@@ -1,37 +1,154 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Press+Start+2P&display=swap');
+@import url('/css/base.css');
 
 body {
+    padding-top: 0;
     background: #000000;
     font-family: 'Press Start 2P', cursive;
+    height: 95vh;
 }
 
 h1 {
     color: #FFFFFF;
 }
 
+.container {
+    display: grid;
+    align-content: space-between;
+}
+
 #boss {
     display: grid;
     flex-direction: row-reverse;
     justify-content: end;
-    justify-items: end;
+    justify-items: center;
+    margin-top: 20px;
 }
 
 img {
     display: flex;
     justify-content: flex-end;
+    padding-top: 10px;
 }
 
-#txtmessage {
+.material-symbols-outlined {
+    color: #FFFFFF;
+    position: absolute;
+    left: 98%;
+}
+
+#bagItems {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    display: none; 
+}
+
+#modalBag {
+    position: relative;
+    background: rgb(0, 0, 0, 0.9);
+    width: 1200px;
+    height: 500px;
+    margin: 0 auto;
+    top: 20%;
+    overflow: hidden;
+    overflow-y: scroll;
+    border: 5px solid rgb(255, 255, 255);
+}
+
+#bag {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 900px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     border: 5px solid #FFFFFF;
+    margin-top: -35px;
+    background: rgb(0,0,0,0.92); 
     color: #FFFFFF;
 }
 
-#txtTxtBox { 
+button{
+    border: 0;
+    background: none;
     color: white;
 }
-    
+
+button#btnBag {
+    width: 100%;
+    height: 100%;
+}
+
+#txtBossMessage {
+    color: #FFFFFF;
+    width: 600px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#bossTxtBox { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 200px;
+    border: 5px solid #FFFFFF;
+    margin-top: -35px;
+    background: rgb(0,0,0,0.92);
+}
+
+#txtUserMessage {
+    color: #FFFFFF;
+    width: 600px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#userBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+    height: 200px;
+    border: 5px solid #FFFFFF;
+    margin-top: -35px;
+    background: rgb(0,0,0,0.92);
+}
+
+@keyframes healthBarGrow{
+    100% {width:100%}
+
+    0% {width:0px}
+
+}
+
+#userRow {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+#bossName {
+    padding-bottom: 10px;
+    color: white;
+}
+
+#healthBarNormal {
+    animation: healthBarGrow 7s linear;
+    background: white;
+    height: 100%;
+}
+
+#healthBarEmpty {
+    border: 1px solid #FFFFFF;
+    width: 600px;
+    height: 40px;
+}
