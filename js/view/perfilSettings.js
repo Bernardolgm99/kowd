@@ -16,6 +16,8 @@ function reset() {
             input.type = "password"
         })
     }
+    document.querySelector('.divHidde').innerHTML = ""
+    document.querySelector('.inform').innerHTML = ""
 }
 
 /* password */
@@ -35,7 +37,35 @@ showPassword.addEventListener('click', () => {
 reset()/* apenas inicia aqui por causa do let showPassword e dos inputs */
 
 /* change img */
-let input = document.querySelector('.fileAdd')
+let myInput = document.querySelector('.imgPerfil')
+let valor = 0
+myInput.addEventListener('click', (event) => {
+    event.preventDefault()
+    let divEscondida = document.querySelector('.divHidde')
+    if(valor == 0){
+        divEscondida.innerHTML = ''
+        let imgName = ['../media/userIcon/user1.jpg','../media/userIcon/user2.png','../media/userIcon/user3.png', '../media/userIcon/user4.png']
+        imgName.forEach(img => {
+            divEscondida.innerHTML += `<img class='responsive imgOP' src="${img}">`
+        })
+        valor = 1
+    } else {
+        divEscondida.innerHTML = ""
+        valor = 0
+    }
+    addToPerfilImg()
+})
+
+function addToPerfilImg() {
+    let imgPerf = document.querySelectorAll('.imgOP')
+    imgPerf.forEach(image => {
+        image.addEventListener('click', (event) =>{
+            event.preventDefault();
+            document.querySelector('.imgPerfil').src = image.src
+        })
+    })
+}
+/* let input = document.querySelector('.fileAdd')
 input.addEventListener('change', () => {
     let reader = new FileReader();
     reader.addEventListener('load', () => {
@@ -46,7 +76,7 @@ input.addEventListener('change', () => {
         console.log(currentUser)
     })
     reader.readAsDataURL(input.files[0])
-})
+}) */
 
 /* reset */
 document.querySelector('#resetBtn').addEventListener('click', () => {reset()})
@@ -57,17 +87,19 @@ document.querySelector('#saveBtn').addEventListener('click', (event) => {
     let password = document.querySelector('#new').value;
     let confirm_password = document.querySelector('#confirm').value;
 
-    if(currentUser.password == password){
+    if(currentUser.password == password && password != null){
         document.querySelector('.inform').innerHTML = `<div class="alert alert-danger" role="alert">Your password is the same as before! Try again.</div>`
-    } else if(password == confirm_password) {
-        console.log()
-        document.querySelector('.inform').innerHTML = `<div class="alert alert-success" role="alert">Your password was changed!</div>`
-        /* update change password */
+    } else if(password == confirm_password && password != "") {
+        /* change password */
         currentUser.password = password
-        localStorage.setItem('currentUser', JSON.stringify(currentUser))
-        User.attUserOnStorage(currentUser)
-        reset()
     } else {
         document.querySelector('.inform').innerHTML = `<div class="alert alert-danger" role="alert">Your passwords don't match! Try again.</div>`
     }
+    document.querySelector('.inform').innerHTML = `<div class="alert alert-success" role="alert">Changes heve been made!</div>`
+    /* update imagem */
+    currentUser.img = document.querySelector('.imgPerfil').src
+    localStorage.setItem('currentUser', JSON.stringify(currentUser))
+    User.attUserOnStorage(currentUser)
+    console.log('teste')
+    setTimeout(reset, 5000)
 });
