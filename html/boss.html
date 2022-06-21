@@ -14,8 +14,8 @@
     <div class="row">
         <div id="boss">
             <div id="bossName"></div>
-            <div id="healthBarEmpty">                
-                <div id="healthBarNormal"></div>
+            <div class="healthBarEmpty">                
+                <div id="healthBossNormal"></div>
             </div>
             <img id="bossImg" src="" height="200">
             <div id="bossTxtBox">
@@ -27,20 +27,38 @@
     </div>
     <div>
     </div>
-    <div id="userRow">
-        <div id="userBox">
-            <div id="txtUserMessage">
-            </div>  
+    <div id="skipDiv">
+        <div id="skip" style="display: none;">
+            <button id="skipBtn">
+                SKIP
+            </button>
         </div>
-        <div id="bagItems">
-            <div id="modalBag">
-                <button class="material-symbols-outlined">
-                    close
-                </button>
+    </div>
+    <div class="row">
+        <div id="userRow">
+            <div id="userBar">
+                <div id="userName"></div>
+                    <div class="healthBarEmpty">                
+                        <div id="healthUserNormal"></div>
+                    </div>
             </div>
-        </div>
-        <div id="bag">
-            <button id="btnBag">BAG</button>
+            <div id="userBox">
+                <div id="txtUserMessage">
+                </div>  
+            </div>
+            <div id="bagItems">
+                <div id="modalBag">
+                    <button id="closeBtn" class="material-symbols-outlined">
+                        close
+                    </button>
+                    <div id="items">
+                    </div>
+                </div>
+            </div>
+            <div id="functions"></div>
+            <div id="bag">
+                <button id="btnBag">BAG</button>
+            </div>
         </div>
     </div>
 </div>

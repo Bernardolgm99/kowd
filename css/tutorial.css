@@ -11,7 +11,6 @@ body{
 
 @media (max-width: 992px){
   .exercises {
-    height: 10px;
     box-shadow: 0px 0px 2px 2px #ffffff;  
     border-radius: 7px;
   }
@@ -20,6 +19,57 @@ body{
     box-shadow: 0px 0px 2px 2px #ffffff;  
     border-radius: 7px;
   }
+
+  .boss {
+    box-shadow: 0px 0px 2px 2px #9a0303;  
+    border-radius: 7px;
+    color: #9a0303 !important;
+  }
+
+  #modal{
+    width: 90vw !important;
+    height: 25vh !important;
+  }
+}
+
+#btnsModal {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  width: 20vw;
+  height: 15vh;
+  background: #777777;
+  box-shadow: 0px 0px 4px 4px #FFFFFF;  
+  border-radius: 7px;
+  display: none;   
+}
+
+button {
+  background: transparent;
+  color: #ffffff;
+  border: 3px solid #FFFFFF;
+  border-radius: 5px;
+}
+
+button:hover {
+  box-shadow: 0px 0px 4px 4px #FFFFFF;  
+  border-radius: 7px;
+}
+
+#txtModal {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  align-content: stretch;
+  align-items: center;
+  padding-left: 3px;
+  color: #ffffff;
 }
 
 a{
@@ -37,9 +87,27 @@ a:hover{
   margin-top: 10px;
   width: 90%;
   height: 70px;
-  color: white;
+  color: #FFFFFF;
   margin: 0 auto;
 }
+
+.boss {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+  width: 90%;
+  height: 70px;
+  color: #FFFFFF;
+}
+
+.boss:hover {
+  animation-name: boxshadowSmoothBoss;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  color: #9a0303;
+}
+
 
 .exercises:hover{
   animation-name: boxshadowSmooth;
@@ -61,6 +129,14 @@ a:hover{
   animation-name: boxshadowSmooth;
   animation-duration: 5s;
   animation-iteration-count: infinite;
+}
+
+@keyframes boxshadowSmoothBoss {
+  100% { box-shadow: 0px 0px 2px 2px #9a0303;  border-radius: 7px;}
+
+  50% { box-shadow: 0px 0px 4px 4px #9a0303;  border-radius: 7px;}
+
+  0% { box-shadow: 0px 0px 2px 2px #9a0303;  border-radius: 7px;}
 }
 
 @keyframes boxshadowSmooth {
