@@ -172,17 +172,17 @@ function initdata() {
                 img: '../../media/img/icon_playMaker.png'
             }, {
                 id: 2,
-                name: 'Guardian of Anubis',
-                description: 'You will receive less damage',
-                value: 1200,
-                img: '../../media/img/icon_wayToCool.png'
-            }, {
-                id: 3,
                 name: 'Saitama-san',
                 description: 'You gone starts half hp but can kill the boss in one-hit',
                 value: 50200,
                 img: '../../media/img/icon_deathUnbound.png'
             }, {
+                id: 3,
+                name: 'Guardian of Anubis',
+                description: 'You will receive less damage',
+                value: 1200,
+                img: '../../media/img/icon_wayToCool.png'
+            },{
                 id: 4,
                 name: 'Weak like cuphead',
                 description: 'Bosses will start with half life',

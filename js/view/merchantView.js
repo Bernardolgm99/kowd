@@ -1,7 +1,7 @@
-import * as Item from "../models/itemsModel.js"
 import * as User from "../models/userModel.js"
 import * as Base from "../base.js"
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
+let itemArray = JSON.parse(localStorage.getItem('items'))
 if (!(localStorage.getItem('currentUser'))) window.location.href = "../../html/login.html"
 
 /* text wright missing */
@@ -45,7 +45,7 @@ function renderShop() {
     let shop = document.querySelector('.shop')
     shop.innerHTML = ``
     if ((currentUser.bag).length > 0) {
-        for (let itens of Item.itemArray) {
+        for (let itens of itemArray) {
             find: {
                 for(let item of currentUser.bag){
                     if (item == itens.id) {
@@ -80,7 +80,7 @@ function renderShop() {
     }
 
     else {
-        for (let itens of Item.itemArray) {
+        for (let itens of itemArray) {
             shop.innerHTML += `
                 <div class="row shopItem mb-3">
                     <div class="col-2 img"><img src="${itens.img}"></div>
@@ -104,7 +104,7 @@ function renderBtn() {
     btns.forEach(btn => {
         btn.addEventListener('click', (event) => {
             event.preventDefault()
-            let itemShop = Item.itemArray[event.target.id - 1]
+            let itemShop = itemArray[event.target.id - 1]
             //console.log(itemShop)
             //check bought
             //console.log((currentUser.bag).length)

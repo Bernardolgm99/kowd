@@ -1,4 +1,4 @@
-import * as User from "../models/userModel";
+import * as User from "../models/userModel.js";
 
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 let items = JSON.parse(localStorage.getItem('items'))
