@@ -1,22 +1,28 @@
 let current_lesson = document.querySelector('#current-lesson')
 let achievements = document.querySelector('#achievements')
 let leaderboard = document.querySelector('#leaderboard')
-
-
+/* 
+currentUser.easteregg = [0]
+localStorage.setItem('currentUser', JSON.stringify(currentUser)) */
 
 //Tutorial Region
 current_lesson.querySelector('.lesson-div').innerHTML = `
 <span class="lesson-text">
 ${currentUser.currentExercise % 10 == 0 ?
-        `Current Lesson ${Math.trunc(currentUser.currentExercise / 10)}` :
-        `Current Lesson ${Math.trunc(currentUser.currentExercise / 10)}, Exercise ${currentUser.currentExercise % 10}`
+        `function current(){<br>Lesson = ${Math.trunc(currentUser.currentExercise/10)%10};<br>}` :
+        `function current(){<br>Lesson = ${Math.trunc(currentUser.currentExercise/10)%10};<br>Exercise = ${currentUser.currentExercise % 10};<br>}`
     }
 </span>
 `
 current_lesson.querySelector('.lesson-div').addEventListener('click', () =>{
     if (current_lesson.querySelector('.lesson-div').innerText.search(/Exercise/)>0){
+        let currentExercise = JSON.parse(localStorage.getItem('exercises')).find(exercise => exercise.id == currentUser.currentExercise%10)
+        localStorage.setItem('currentExercise', JSON.stringify(currentExercise))
         window.location.href = "/html/exercise.html"
     } else {
+        let currentLesson = JSON.parse(localStorage.getItem('lessons')).filter(lesson => lesson.idModule == Math.trunc(currentUser.currentExercise/100))
+        currentLesson = currentLesson[Math.trunc(currentUser.currentExercise/10)%10-1]
+        localStorage.setItem('currentLesson', JSON.stringify(currentLesson))
         window.location.href = "/html/lesson.html"
     }
 })
@@ -66,8 +72,8 @@ let users = JSON.parse(localStorage.getItem('users'))
 users.sort((userA, userB) => {
     return userB.point - userA.point
 })
+users = users.filter(user => user.type == 0)
 let max_point = users[0].point
-console.log(max_point);
 users.forEach((user,i) => {
     leaderboard.querySelector('tbody').innerHTML += `
     <tr>
