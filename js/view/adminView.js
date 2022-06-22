@@ -1,8 +1,8 @@
-import * as exModel from "./models/exModel.js"
-import * as Comment from "./models/commentsModel.js"
-import * as Module from "./models/moduleModel.js"
-import * as Lesson from "./models/lessonModel.js"
-import * as User from "./models/userModel.js"
+import * as exModel from "../models/exModel.js"
+import * as Comment from "../models/commentsModel.js"
+import * as Module from "../models/moduleModel.js"
+import * as Lesson from "../models/lessonModel.js"
+import * as User from "../models/userModel.js"
 
 /* Module.createModuleOnStorage("Basic")
 Module.createModuleOnStorage("Medium")

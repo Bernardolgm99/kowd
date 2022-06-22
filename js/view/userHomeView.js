@@ -1,7 +1,9 @@
 let current_lesson = document.querySelector('#current-lesson')
 let achievements = document.querySelector('#achievements')
 let leaderboard = document.querySelector('#leaderboard')
-
+/* 
+currentUser.easteregg = [0]
+localStorage.setItem('currentUser', JSON.stringify(currentUser)) */
 
 //Tutorial Region
 current_lesson.querySelector('.lesson-div').innerHTML = `
@@ -14,8 +16,13 @@ ${currentUser.currentExercise % 10 == 0 ?
 `
 current_lesson.querySelector('.lesson-div').addEventListener('click', () =>{
     if (current_lesson.querySelector('.lesson-div').innerText.search(/Exercise/)>0){
+        let currentExercise = JSON.parse(localStorage.getItem('exercises')).find(exercise => exercise.id == currentUser.currentExercise%10)
+        localStorage.setItem('currentExercise', JSON.stringify(currentExercise))
         window.location.href = "/html/exercise.html"
     } else {
+        let currentLesson = JSON.parse(localStorage.getItem('lessons')).filter(lesson => lesson.idModule == Math.trunc(currentUser.currentExercise/100))
+        currentLesson = currentLesson[Math.trunc(currentUser.currentExercise/10)%10-1]
+        localStorage.setItem('currentLesson', JSON.stringify(currentLesson))
         window.location.href = "/html/lesson.html"
     }
 })

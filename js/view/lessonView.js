@@ -3,7 +3,7 @@ import * as Lesson from "../models/lessonModel.js"
 import * as User from "../models/userModel.js"
 
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
-let currentLesson = JSON.parse(localStorage.getItem('lessons')).find(lesson => lesson.id == Math.trunc(currentUser.currentExercise / 10) % 10)
+let currentLesson = JSON.parse(localStorage.getItem('currentLesson'))
 
 let comments = []
 if (localStorage.getItem('comments')) comments = JSON.parse(localStorage.getItem('comments')).filter(comment => comment.idLessonReference === currentLesson.id)
@@ -44,25 +44,25 @@ function timeAgo(time) {
 
 document.querySelector('#title').innerHTML = `${currentLesson.name}`
 document.querySelector('#description').innerHTML = `Description:<br><br>${currentLesson.description}`
-
-currentLesson.timestamps.forEach(timestamp => {
-    document.querySelector('#timestamp').innerHTML += `
-    <div class="d-flex py-3 clickable" value="${timestamp[1]}">
-        <canvas class="timestamp-screen m-auto"></canvas>
-        <div class="flex-grow-1 d-flex flex-column justify-content-center ps-3">
-            <span class="timestamp-title fs-6">${timestamp[0].length > 40 ? `${timestamp[0].substr(0, 40).trim()}...` : timestamp[0]}</span>
-            <span class="timestamp-time fs-6">${Math.trunc(timestamp[1] / 60) < 10 ? (Math.trunc(timestamp[1] % 60) < 10 ? `0${Math.trunc(timestamp[1] / 60)}:0${Math.trunc(timestamp[1] % 60)}` : `0${Math.trunc(timestamp[1] / 60)}:${Math.trunc(timestamp[1] % 60)}`) : (Math.trunc(timestamp[1] % 60) < 10 ? `${Math.trunc(timestamp[1] / 60)}:0${Math.trunc(timestamp[1] % 60)}` : `${Math.trunc(timestamp[1] / 60)}:${Math.trunc(timestamp[1] % 60)}`)}</span>
+if (currentLesson.timestamps){
+    currentLesson.timestamps.forEach(timestamp => {
+        document.querySelector('#timestamp').innerHTML += `
+        <div class="d-flex py-3 clickable" value="${timestamp[1]}">
+            <canvas class="timestamp-screen m-auto"></canvas>
+            <div class="flex-grow-1 d-flex flex-column justify-content-center ps-3">
+                <span class="timestamp-title fs-6">${timestamp[0].length > 40 ? `${timestamp[0].substr(0, 40).trim()}...` : timestamp[0]}</span>
+                <span class="timestamp-time fs-6">${Math.trunc(timestamp[1] / 60) < 10 ? (Math.trunc(timestamp[1] % 60) < 10 ? `0${Math.trunc(timestamp[1] / 60)}:0${Math.trunc(timestamp[1] % 60)}` : `0${Math.trunc(timestamp[1] / 60)}:${Math.trunc(timestamp[1] % 60)}`) : (Math.trunc(timestamp[1] % 60) < 10 ? `${Math.trunc(timestamp[1] / 60)}:0${Math.trunc(timestamp[1] % 60)}` : `${Math.trunc(timestamp[1] / 60)}:${Math.trunc(timestamp[1] % 60)}`)}</span>
+            </div>
         </div>
-    </div>
-    `
-})
-
-document.querySelector('#timestamp').querySelectorAll('.clickable').forEach((timestamp) => {
-    timestamp.addEventListener('click', () => {
-        video.currentTime = +timestamp.getAttribute('value')
+        `
     })
-})
-//
+    document.querySelector('#timestamp').querySelectorAll('.clickable').forEach((timestamp) => {
+        timestamp.addEventListener('click', () => {
+            video.currentTime = +timestamp.getAttribute('value')
+        })
+    })
+}
+console.log(currentLesson);
 // Functions to do likes and dislikes
 document.querySelector('#like').style.color = currentLesson.popularity[0].find(like => like == currentUser.id) ? '#0781BC' : "#fff"
 document.querySelector('#dislike').style.color = currentLesson.popularity[1].find(dislike => dislike == currentUser.id) ? '#C350DC' : "#fff"
@@ -83,6 +83,11 @@ function doLike() {
         this.style.color = "#0781BC"
         currentLesson.popularity[0].push(currentUser.id)
         currentLesson = Lesson.attLesson(currentLesson)
+    }
+    if (!currentUser.achievements.find(egg => egg == 3)) {
+        currentUser.achievements.push(3)
+        User.attUserOnStorage(currentUser)
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
     }
 }
 function doDislike() {
@@ -105,6 +110,11 @@ function doDislike() {
 
 
 document.querySelector('#send-comment').addEventListener('click', () => {
+    if (!currentUser.achievements.find(egg => egg == 5)) {
+        currentUser.achievements.push(5)
+        User.attUserOnStorage(currentUser)
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+    }
     let comment = document.querySelector('#input-comment').value
     Comments.createCommentOnStorage(currentLesson.id, `${currentUser.first_name} ${currentUser.last_name}`, currentUser.img, comment)
     let div = document.createElement('div')
@@ -159,9 +169,28 @@ if (currentLesson.timestamps.length) {
 
 document.querySelector('.go_exercise').addEventListener('click', () => {
     if (JSON.parse(localStorage.exercises).find(exercise => exercise.lessonId == currentLesson.id)) {
-        localStorage.setItem('currentExercise',JSON.parse(localStorage.exercises).find(exercise => exercise.lessonId == currentLesson.id))
+        if (+currentUser.currentExercise < `${currentLesson.idModule}${currentLesson.id}1`) {
+            currentUser.currentExercise = +`${currentLesson.idModule}${currentLesson.id}1`
+            User.attUserOnStorage(currentUser)
+            localStorage.setItem('currentUser', JSON.stringify(currentUser))
+        }
+        console.log(JSON.parse(localStorage.exercises).find(exercise => exercise.lessonId == currentLesson.id));
+        localStorage.setItem('currentExercise', JSON.stringify(JSON.parse(localStorage.exercises).find(exercise => exercise.lessonId == currentLesson.id)))
         window.location.href = "/html/exercise.html"
     } else {
+        if (JSON.parse(localStorage.lessons).filter(lesson => lesson.idModule == currentLesson.idModule).findIndex(lesson => lesson.id == currentLesson.id) + 1 == JSON.parse(localStorage.lessons).filter(lesson => lesson.idModule == currentLesson.idModule).length) {
+            if (+currentUser.currentExercise < `${currentLesson.idModule + 1}10`) {
+                currentUser.currentExercise = +`${currentLesson.idModule + 1}10`
+                User.attUserOnStorage(currentUser)
+                localStorage.setItem('currentUser', JSON.stringify(currentUser))
+            }
+        } else {
+            if (+currentUser.currentExercise < `${currentLesson.idModule}${currentLesson.id+1}0`) {
+                currentUser.currentExercise = +`${currentLesson.idModule}${currentLesson.id+1}0`
+                User.attUserOnStorage(currentUser)
+                localStorage.setItem('currentUser', JSON.stringify(currentUser))
+            }
+        }
         window.location.href = "/html/tutorial.html"
     }
 })
@@ -208,6 +237,11 @@ window.onmouseup = () => {
 // Update color while playing
 video.ontimeupdate = () => {
     if (video.currentTime == video.duration) {
+        if (!currentUser.achievements.find(egg => egg == 4)) {
+            currentUser.achievements.push(4)
+            User.attUserOnStorage(currentUser)
+            localStorage.setItem('currentUser', JSON.stringify(currentUser))
+        }
         document.querySelector('.overlay-end').style.display = 'block'
     }
     let x = parseFloat((video.currentTime * 100 / video.duration))

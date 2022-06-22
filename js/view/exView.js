@@ -170,6 +170,9 @@ function rightAnswer() {
             &nbsp;&nbsp;&nbsp;&nbsp;-> Bonus: ${exercise_point_bonus} points<br>
             &nbsp;&nbsp;&nbsp;&nbsp;(finish lesson)</span><br><br>
             C:\\Users\\${currentUser.first_name}>`
+            if (!currentUser.achievements.find(egg => egg == 2)) {
+                currentUser.achievements.push(2)
+            }
             document.querySelector('.exercise').innerHTML = `<h1 class="mb-5">Lesson finished</h1>`
             consoleView.parentNode.innerHTML += `<div class="my-4 text-center"><button type="button" class="btn btn-orange">Finished</button></div>`
             consoleView = document.querySelector('.console')
@@ -238,7 +241,7 @@ function wrongAnswer() {
 }
 
 // EasterEgg
-if (!currentUser.easteregg.find(egg => egg == 1)) {
+if (!currentUser.achievements.find(egg => egg == 1)) {
     document.querySelector('.easteregg').addEventListener('click', () => {
         const modal_content = document.getElementById('modalAnswer').querySelector('.modal-content')
         modal_content.innerHTML = `
@@ -253,7 +256,7 @@ if (!currentUser.easteregg.find(egg => egg == 1)) {
             </div>
         `
         currentUser.point += easteregg_point
-        currentUser.easteregg.push(1)
+        currentUser.achievements.push(1)
         User.attUserOnStorage(currentUser)
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
         document.querySelector('.easteregg').remove()

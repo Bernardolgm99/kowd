@@ -1,3 +1,5 @@
+import * as User from "../models/userModel";
+
 let currentUser = JSON.parse(localStorage.getItem('currentUser'))
 let items = JSON.parse(localStorage.getItem('items'))
 let currentModule = JSON.parse(localStorage.getItem('currentModule'));
@@ -188,6 +190,10 @@ function eventCreate(){
                 document.getElementById('skip').style.animation = 'RGB 1s linear infinite'
                 audioEnd(5)
                 currentUser.point += 1000
+                if (!currentUser.achievements.find(egg => egg == 6)) {
+                    currentUser.achievements.push(6)
+                }
+                User.attUserOnStorage(currentUser)
                 localStorage.setItem('currentUser', JSON.stringify(currentUser))
                 setTimeout(() => {window.location.href = "./tutorial.html"},5000)
             }
